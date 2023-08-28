@@ -10,6 +10,12 @@ final class InitialState extends MainState {
   List<Object?> get props => [];
 }
 
+final class LoadingState extends MainState {
+  const LoadingState();
+  @override
+  List<Object?> get props => [];
+}
+
 final class FetchProductSuccess extends MainState {
   const FetchProductSuccess(this.productList);
   final List<Product> productList;

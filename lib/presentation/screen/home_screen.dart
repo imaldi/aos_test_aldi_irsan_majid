@@ -1,5 +1,6 @@
 import 'package:aos_test_aldi_irsan_majid/business_logic/state_management/bloc/blocs/main_bloc.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -95,6 +96,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   autoPlayInterval: const Duration(seconds: 3),
                   autoPlayAnimationDuration: const Duration(milliseconds: 800),
                   autoPlayCurve: Curves.fastOutSlowIn,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      _current = index;
+                    });
+                  }
                   // height: 400.0
               ),
               items: imageSliders,
@@ -131,6 +137,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 BlocBuilder<MainBloc, MainState>(builder: (context, state) {
                   var productList = <Product>[];
                   var salesList = [];
+                  if(state is LoadingState){
+                    return Container(
+                        padding: const EdgeInsets.only(top: 64),
+                        child: const CircularProgressIndicator(color: Colors.black,));
+                  }
                   if (state is FetchProductSuccess) {
                     productList = state.productList;
                     return ListView.builder(
@@ -139,12 +150,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemCount: productList.length,
                         itemBuilder: (c, i) {
                           return ProductTile(
-                            imageUrl: productList[i].productPhoto ?? "",
+                            product: productList[i]
                           );
-                          // return ListTile(
-                          //   title: Text("Item ke ${i+1}",),
-                          //   subtitle: Text("${productList[i]}",),
-                          // );
+
                         });
                   }
                   if (state is FetchSalesSuccess) {
@@ -171,6 +179,56 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
+        bottomNavigationBar: ConvexAppBar(
+          onTap: (index) {
+            // myToast("index: $index");
+            if (index == 0) {
+              // context.read<AuthBloc>().add(const UserLogoutAuthEvent());
+            }
+            if (index == 2) {
+              // context.router.replace(HomeRoute());
+            }
+            if (index == 3) {
+              // context.router
+                  // .replace(RiwayatSuratJalanRoute(isRedirectDetailRiwayat: true));
+            }
+          },
+          // height: heightScreen(context) / 12,
+          curveSize: 0,
+          style: TabStyle.fixedCircle,
+          backgroundColor: Colors.white,
+          color: Colors.grey,
+          elevation: 2,
+          activeColor: Colors.green,
+          // initialActiveIndex: widget.activeIndex,
+          items: [
+            TabItem(
+              title: "Home",
+              icon: Icon(Icons.home),
+              isIconBlend: true,
+            ),
+            const TabItem(
+              title: "Search",
+              icon: Icon(Icons.search),
+              isIconBlend: true,
+            ),
+            TabItem(
+              icon:
+              Icon(Icons.shopping_cart),
+              isIconBlend: true,
+            ),
+            const TabItem(
+              title: "Riwayat",
+              icon: Icon(Icons.notes),
+              isIconBlend: true,
+            ),
+            const TabItem(
+              title: "Profile",
+              icon: Icon(Icons.person_outline),
+              isIconBlend: true,
+            ),
+          ],
+        )
     );
   }
 }

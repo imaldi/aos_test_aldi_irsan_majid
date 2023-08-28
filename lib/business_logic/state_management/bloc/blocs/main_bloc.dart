@@ -12,6 +12,7 @@ part 'main_state.dart';
 class MainBloc extends Bloc<MainEvent, MainState> {
   MainBloc({required MainRepository repository}) : super(const InitialState()) {
     on<FetchProductListEvent>((event, emit) async {
+      emit(const LoadingState());
       var productList = await repository.fetchProductList(
           key: requestKey,
           pmethod: fetchProductKey,
@@ -22,6 +23,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       emit(FetchProductSuccess(productList));
     });
     on<FetchSalesListEvent>((event, emit) async {
+      emit(const LoadingState());
       var salesList = await repository.fetchSalesList(
           key: requestKey,
           pmethod: fetchSalesKey,
