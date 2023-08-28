@@ -20,13 +20,23 @@ Product _$ProductFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Product {
+  @HiveField(0)
   int? get no => throw _privateConstructorUsedError;
+  @HiveField(1)
   String? get productId => throw _privateConstructorUsedError;
+  @HiveField(2)
   String? get productName => throw _privateConstructorUsedError;
+  @HiveField(3)
   String? get productDescription => throw _privateConstructorUsedError;
+  @HiveField(4)
   int? get productValue => throw _privateConstructorUsedError;
+  @HiveField(5)
   String? get productType => throw _privateConstructorUsedError;
-  String? get productPhoto => throw _privateConstructorUsedError;
+  @HiveField(6)
+  String? get productPhoto =>
+      throw _privateConstructorUsedError; // New field for quantity
+  @HiveField(7)
+  int get quantity => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,13 +49,14 @@ abstract class $ProductCopyWith<$Res> {
       _$ProductCopyWithImpl<$Res, Product>;
   @useResult
   $Res call(
-      {int? no,
-      String? productId,
-      String? productName,
-      String? productDescription,
-      int? productValue,
-      String? productType,
-      String? productPhoto});
+      {@HiveField(0) int? no,
+      @HiveField(1) String? productId,
+      @HiveField(2) String? productName,
+      @HiveField(3) String? productDescription,
+      @HiveField(4) int? productValue,
+      @HiveField(5) String? productType,
+      @HiveField(6) String? productPhoto,
+      @HiveField(7) int quantity});
 }
 
 /// @nodoc
@@ -68,6 +79,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? productValue = freezed,
     Object? productType = freezed,
     Object? productPhoto = freezed,
+    Object? quantity = null,
   }) {
     return _then(_value.copyWith(
       no: freezed == no
@@ -98,6 +110,10 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.productPhoto
           : productPhoto // ignore: cast_nullable_to_non_nullable
               as String?,
+      quantity: null == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -110,13 +126,14 @@ abstract class _$$_ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int? no,
-      String? productId,
-      String? productName,
-      String? productDescription,
-      int? productValue,
-      String? productType,
-      String? productPhoto});
+      {@HiveField(0) int? no,
+      @HiveField(1) String? productId,
+      @HiveField(2) String? productName,
+      @HiveField(3) String? productDescription,
+      @HiveField(4) int? productValue,
+      @HiveField(5) String? productType,
+      @HiveField(6) String? productPhoto,
+      @HiveField(7) int quantity});
 }
 
 /// @nodoc
@@ -136,6 +153,7 @@ class __$$_ProductCopyWithImpl<$Res>
     Object? productValue = freezed,
     Object? productType = freezed,
     Object? productPhoto = freezed,
+    Object? quantity = null,
   }) {
     return _then(_$_Product(
       no: freezed == no
@@ -166,43 +184,61 @@ class __$$_ProductCopyWithImpl<$Res>
           ? _value.productPhoto
           : productPhoto // ignore: cast_nullable_to_non_nullable
               as String?,
+      quantity: null == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
+@HiveType(typeId: productModelTypeId, adapterName: 'ProductModelAdapter')
 class _$_Product implements _Product {
   _$_Product(
-      {this.no,
-      this.productId,
-      this.productName,
-      this.productDescription,
-      this.productValue,
-      this.productType,
-      this.productPhoto});
+      {@HiveField(0) this.no,
+      @HiveField(1) this.productId,
+      @HiveField(2) this.productName,
+      @HiveField(3) this.productDescription,
+      @HiveField(4) this.productValue,
+      @HiveField(5) this.productType,
+      @HiveField(6) this.productPhoto,
+      @HiveField(7) this.quantity = 0});
 
   factory _$_Product.fromJson(Map<String, dynamic> json) =>
       _$$_ProductFromJson(json);
 
   @override
+  @HiveField(0)
   final int? no;
   @override
+  @HiveField(1)
   final String? productId;
   @override
+  @HiveField(2)
   final String? productName;
   @override
+  @HiveField(3)
   final String? productDescription;
   @override
+  @HiveField(4)
   final int? productValue;
   @override
+  @HiveField(5)
   final String? productType;
   @override
+  @HiveField(6)
   final String? productPhoto;
+// New field for quantity
+  @override
+  @JsonKey()
+  @HiveField(7)
+  final int quantity;
 
   @override
   String toString() {
-    return 'Product(no: $no, productId: $productId, productName: $productName, productDescription: $productDescription, productValue: $productValue, productType: $productType, productPhoto: $productPhoto)';
+    return 'Product(no: $no, productId: $productId, productName: $productName, productDescription: $productDescription, productValue: $productValue, productType: $productType, productPhoto: $productPhoto, quantity: $quantity)';
   }
 
   @override
@@ -222,13 +258,15 @@ class _$_Product implements _Product {
             (identical(other.productType, productType) ||
                 other.productType == productType) &&
             (identical(other.productPhoto, productPhoto) ||
-                other.productPhoto == productPhoto));
+                other.productPhoto == productPhoto) &&
+            (identical(other.quantity, quantity) ||
+                other.quantity == quantity));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, no, productId, productName,
-      productDescription, productValue, productType, productPhoto);
+      productDescription, productValue, productType, productPhoto, quantity);
 
   @JsonKey(ignore: true)
   @override
@@ -246,30 +284,41 @@ class _$_Product implements _Product {
 
 abstract class _Product implements Product {
   factory _Product(
-      {final int? no,
-      final String? productId,
-      final String? productName,
-      final String? productDescription,
-      final int? productValue,
-      final String? productType,
-      final String? productPhoto}) = _$_Product;
+      {@HiveField(0) final int? no,
+      @HiveField(1) final String? productId,
+      @HiveField(2) final String? productName,
+      @HiveField(3) final String? productDescription,
+      @HiveField(4) final int? productValue,
+      @HiveField(5) final String? productType,
+      @HiveField(6) final String? productPhoto,
+      @HiveField(7) final int quantity}) = _$_Product;
 
   factory _Product.fromJson(Map<String, dynamic> json) = _$_Product.fromJson;
 
   @override
+  @HiveField(0)
   int? get no;
   @override
+  @HiveField(1)
   String? get productId;
   @override
+  @HiveField(2)
   String? get productName;
   @override
+  @HiveField(3)
   String? get productDescription;
   @override
+  @HiveField(4)
   int? get productValue;
   @override
+  @HiveField(5)
   String? get productType;
   @override
+  @HiveField(6)
   String? get productPhoto;
+  @override // New field for quantity
+  @HiveField(7)
+  int get quantity;
   @override
   @JsonKey(ignore: true)
   _$$_ProductCopyWith<_$_Product> get copyWith =>
@@ -282,6 +331,7 @@ Data _$DataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Data {
+  @HiveField(0)
   List<Product> get products => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -294,7 +344,7 @@ abstract class $DataCopyWith<$Res> {
   factory $DataCopyWith(Data value, $Res Function(Data) then) =
       _$DataCopyWithImpl<$Res, Data>;
   @useResult
-  $Res call({List<Product> products});
+  $Res call({@HiveField(0) List<Product> products});
 }
 
 /// @nodoc
@@ -327,7 +377,7 @@ abstract class _$$_DataCopyWith<$Res> implements $DataCopyWith<$Res> {
       __$$_DataCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Product> products});
+  $Res call({@HiveField(0) List<Product> products});
 }
 
 /// @nodoc
@@ -352,13 +402,17 @@ class __$$_DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res, _$_Data>
 
 /// @nodoc
 @JsonSerializable()
+@HiveType(
+    typeId: productDataModelTypeId, adapterName: 'ProductDataModelAdapter')
 class _$_Data implements _Data {
-  _$_Data({required final List<Product> products}) : _products = products;
+  _$_Data({@HiveField(0) required final List<Product> products})
+      : _products = products;
 
   factory _$_Data.fromJson(Map<String, dynamic> json) => _$$_DataFromJson(json);
 
   final List<Product> _products;
   @override
+  @HiveField(0)
   List<Product> get products {
     if (_products is EqualUnmodifiableListView) return _products;
     // ignore: implicit_dynamic_type
@@ -398,11 +452,13 @@ class _$_Data implements _Data {
 }
 
 abstract class _Data implements Data {
-  factory _Data({required final List<Product> products}) = _$_Data;
+  factory _Data({@HiveField(0) required final List<Product> products}) =
+      _$_Data;
 
   factory _Data.fromJson(Map<String, dynamic> json) = _$_Data.fromJson;
 
   @override
+  @HiveField(0)
   List<Product> get products;
   @override
   @JsonKey(ignore: true)
@@ -415,8 +471,11 @@ ProductApiResponse _$ProductApiResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProductApiResponse {
+  @HiveField(0)
   bool? get success => throw _privateConstructorUsedError;
+  @HiveField(1)
   String? get message => throw _privateConstructorUsedError;
+  @HiveField(2)
   Data? get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -431,7 +490,10 @@ abstract class $ProductApiResponseCopyWith<$Res> {
           ProductApiResponse value, $Res Function(ProductApiResponse) then) =
       _$ProductApiResponseCopyWithImpl<$Res, ProductApiResponse>;
   @useResult
-  $Res call({bool? success, String? message, Data? data});
+  $Res call(
+      {@HiveField(0) bool? success,
+      @HiveField(1) String? message,
+      @HiveField(2) Data? data});
 
   $DataCopyWith<$Res>? get data;
 }
@@ -490,7 +552,10 @@ abstract class _$$_ProductApiResponseCopyWith<$Res>
       __$$_ProductApiResponseCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool? success, String? message, Data? data});
+  $Res call(
+      {@HiveField(0) bool? success,
+      @HiveField(1) String? message,
+      @HiveField(2) Data? data});
 
   @override
   $DataCopyWith<$Res>? get data;
@@ -530,18 +595,25 @@ class __$$_ProductApiResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
+@HiveType(typeId: productApiModelTypeId, adapterName: 'ProductApiModelAdapter')
 class _$_ProductApiResponse implements _ProductApiResponse {
-  _$_ProductApiResponse({this.success = false, this.message, this.data});
+  _$_ProductApiResponse(
+      {@HiveField(0) this.success = false,
+      @HiveField(1) this.message,
+      @HiveField(2) this.data});
 
   factory _$_ProductApiResponse.fromJson(Map<String, dynamic> json) =>
       _$$_ProductApiResponseFromJson(json);
 
   @override
   @JsonKey()
+  @HiveField(0)
   final bool? success;
   @override
+  @HiveField(1)
   final String? message;
   @override
+  @HiveField(2)
   final Data? data;
 
   @override
@@ -580,18 +652,21 @@ class _$_ProductApiResponse implements _ProductApiResponse {
 
 abstract class _ProductApiResponse implements ProductApiResponse {
   factory _ProductApiResponse(
-      {final bool? success,
-      final String? message,
-      final Data? data}) = _$_ProductApiResponse;
+      {@HiveField(0) final bool? success,
+      @HiveField(1) final String? message,
+      @HiveField(2) final Data? data}) = _$_ProductApiResponse;
 
   factory _ProductApiResponse.fromJson(Map<String, dynamic> json) =
       _$_ProductApiResponse.fromJson;
 
   @override
+  @HiveField(0)
   bool? get success;
   @override
+  @HiveField(1)
   String? get message;
   @override
+  @HiveField(2)
   Data? get data;
   @override
   @JsonKey(ignore: true)
