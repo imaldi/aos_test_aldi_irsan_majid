@@ -46,31 +46,55 @@ Map<String, dynamic> _$$_SalesToJson(_$_Sales instance) => <String, dynamic>{
       'salesDetail': instance.salesDetail,
     };
 
-_$_SalesApiResponse _$$_SalesApiResponseFromJson(Map<String, dynamic> json) =>
-    _$_SalesApiResponse(
-      success: json['success'] as bool?,
-      message: json['message'] as String?,
+_$_DataSales _$$_DataSalesFromJson(Map<String, dynamic> json) => _$_DataSales(
       dataSales: json['dataSales'] == null
           ? null
-          : DataSales.fromJson(json['dataSales'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$$_SalesApiResponseToJson(_$_SalesApiResponse instance) =>
-    <String, dynamic>{
-      'success': instance.success,
-      'message': instance.message,
-      'dataSales': instance.dataSales,
-    };
-
-_$_DataSales _$$_DataSalesFromJson(Map<String, dynamic> json) => _$_DataSales(
-      sales: (json['sales'] as List<dynamic>?)
-          ?.map((e) => Sales.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      table2: json['table2'] as Map<String, dynamic>?,
+          : SalesData.fromJson(json['dataSales'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_DataSalesToJson(_$_DataSales instance) =>
     <String, dynamic>{
+      'dataSales': instance.dataSales,
+    };
+
+_$_SalesData _$$_SalesDataFromJson(Map<String, dynamic> json) => _$_SalesData(
+      sales: (json['sales'] as List<dynamic>?)
+          ?.map((e) => SalesItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      table2: json['Table2'] == null
+          ? null
+          : Table2.fromJson(json['Table2'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$_SalesDataToJson(_$_SalesData instance) =>
+    <String, dynamic>{
       'sales': instance.sales,
-      'table2': instance.table2,
+      'Table2': instance.table2,
+    };
+
+_$_SalesItem _$$_SalesItemFromJson(Map<String, dynamic> json) => _$_SalesItem(
+      no: json['NO'] as String?,
+      transactionID: json['transactionID'] as String?,
+      transactionDate: json['transactionDate'] as String?,
+      transactionAddress: json['transactionAddress'] as String?,
+      transactionDelivery: json['transactionDelivery'] as String?,
+      transactionPayment: json['transactionPayment'] as String?,
+    );
+
+Map<String, dynamic> _$$_SalesItemToJson(_$_SalesItem instance) =>
+    <String, dynamic>{
+      'NO': instance.no,
+      'transactionID': instance.transactionID,
+      'transactionDate': instance.transactionDate,
+      'transactionAddress': instance.transactionAddress,
+      'transactionDelivery': instance.transactionDelivery,
+      'transactionPayment': instance.transactionPayment,
+    };
+
+_$_Table2 _$$_Table2FromJson(Map<String, dynamic> json) => _$_Table2(
+      totalPage: json['totalPage'] as String?,
+    );
+
+Map<String, dynamic> _$$_Table2ToJson(_$_Table2 instance) => <String, dynamic>{
+      'totalPage': instance.totalPage,
     };

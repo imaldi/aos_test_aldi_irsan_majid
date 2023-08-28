@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:aos_test_aldi_irsan_majid/core/resource/const/urls.dart';
 import 'package:aos_test_aldi_irsan_majid/data/model/response/sales/sales_response.dart';
 
+import '../model/response/api_response/api_response.dart';
 import '../model/response/product/product_response.dart';
 import 'package:http/http.dart' as http;
 
@@ -25,13 +26,13 @@ abstract class MainRepository {
     String? pversion,
   });
 
-  Future<List<Sales>> fetchSalesList({
+  Future<List<SalesItem>> fetchSalesList({
     required String? key,
     required String? pmethod,
     required String? pemail,
     String? pwhere1,
-    String? pwhere2,
-    String? pwhere3,
+    required String? pwhere2,
+    required String? pwhere3,
     String? pwhere4,
     String? pwhere5,
     required String? pwhere6,
@@ -109,8 +110,8 @@ class MainRepositoryImpl implements MainRepository {
       // return the product list
       if (response.statusCode == 200) {
         var responseBody =
-            ProductApiResponse.fromJson(jsonDecode(response.body));
-        var dataJson = Data.fromJson(jsonDecode(responseBody.data ?? "{}"));
+            ApiResponse.fromJson(jsonDecode(response.body));
+        var dataJson = ProductData.fromJson(jsonDecode(responseBody.data ?? "{}"));
         log("responseBody: ${dataJson.toJson().toString()}");
 
         // var productList = responseBody.data?.products ?? [];
@@ -124,13 +125,13 @@ class MainRepositoryImpl implements MainRepository {
   }
 
   @override
-  Future<List<Sales>> fetchSalesList(
+  Future<List<SalesItem>> fetchSalesList(
       {required String? key,
       required String? pmethod,
       required String? pemail,
       String? pwhere1,
-      String? pwhere2,
-      String? pwhere3,
+      required String? pwhere2,
+      required String? pwhere3,
       String? pwhere4,
       String? pwhere5,
       required String? pwhere6,
@@ -165,11 +166,11 @@ class MainRepositoryImpl implements MainRepository {
         "pversion": pversion,
       };
       // make the API request
-      final response = await http.post(url, headers: headerMap, body: bodyMap);
+      final response = await http.post(url, headers: headerMap, body: jsonEncode(bodyMap));
       // return the product list
       if (response.statusCode == 200) {
-        var responseBody = SalesApiResponse.fromJson(jsonDecode(response.body));
-        var salesList = responseBody.dataSales?.sales ?? [];
+        var responseBody = ApiResponse.fromJson(jsonDecode(response.body));
+        var salesList = DataSales.fromJson(jsonDecode(responseBody.data ?? "{}")).dataSales?.sales ?? [];
         return salesList;
       }
       return [];
@@ -224,7 +225,7 @@ class MainRepositoryImpl implements MainRepository {
       final response = await http.post(url, headers: headerMap, body: bodyMap);
       // return the product list
       if (response.statusCode == 200) {
-        var responseBody = SalesApiResponse.fromJson(jsonDecode(response.body));
+        var responseBody = ApiResponse.fromJson(jsonDecode(response.body));
         var isSuccess = responseBody.success ?? false;
         return isSuccess;
       }

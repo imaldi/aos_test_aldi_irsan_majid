@@ -33,25 +33,51 @@ class Sales with _$Sales {
   factory Sales.fromJson(Map<String, dynamic> json) => _$SalesFromJson(json);
 }
 
-@freezed
-class SalesApiResponse with _$SalesApiResponse {
-  factory SalesApiResponse({
-    bool? success,
-    String? message,
-    DataSales? dataSales,
-  }) = _SalesApiResponse;
 
-  factory SalesApiResponse.fromJson(Map<String, dynamic> json) =>
-      _$SalesApiResponseFromJson(json);
-}
 
 @freezed
 class DataSales with _$DataSales {
   factory DataSales({
-    List<Sales>? sales,
-    Map<String, dynamic>? table2,
+    @JsonKey(name: 'dataSales') SalesData? dataSales,
   }) = _DataSales;
 
   factory DataSales.fromJson(Map<String, dynamic> json) =>
       _$DataSalesFromJson(json);
 }
+
+@freezed
+class SalesData with _$SalesData {
+  const factory SalesData({
+    List<SalesItem>? sales,
+    @JsonKey(name: "Table2") Table2? table2,
+  }) = _SalesData;
+
+  factory SalesData.fromJson(Map<String, dynamic> json) =>
+      _$SalesDataFromJson(json);
+}
+
+@freezed
+class SalesItem with _$SalesItem {
+  const factory SalesItem({
+    @JsonKey(name: "NO") String? no,
+    String? transactionID,
+    String? transactionDate,
+    String? transactionAddress,
+    String? transactionDelivery,
+    String? transactionPayment,
+  }) = _SalesItem;
+
+  factory SalesItem.fromJson(Map<String, dynamic> json) =>
+      _$SalesItemFromJson(json);
+}
+
+@freezed
+class Table2 with _$Table2 {
+  const factory Table2({
+    String? totalPage,
+  }) = _Table2;
+
+  factory Table2.fromJson(Map<String, dynamic> json) => _$Table2FromJson(json);
+}
+
+

@@ -514,203 +514,14 @@ abstract class _Sales implements Sales {
       throw _privateConstructorUsedError;
 }
 
-SalesApiResponse _$SalesApiResponseFromJson(Map<String, dynamic> json) {
-  return _SalesApiResponse.fromJson(json);
-}
-
-/// @nodoc
-mixin _$SalesApiResponse {
-  bool? get success => throw _privateConstructorUsedError;
-  String? get message => throw _privateConstructorUsedError;
-  DataSales? get dataSales => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $SalesApiResponseCopyWith<SalesApiResponse> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $SalesApiResponseCopyWith<$Res> {
-  factory $SalesApiResponseCopyWith(
-          SalesApiResponse value, $Res Function(SalesApiResponse) then) =
-      _$SalesApiResponseCopyWithImpl<$Res, SalesApiResponse>;
-  @useResult
-  $Res call({bool? success, String? message, DataSales? dataSales});
-
-  $DataSalesCopyWith<$Res>? get dataSales;
-}
-
-/// @nodoc
-class _$SalesApiResponseCopyWithImpl<$Res, $Val extends SalesApiResponse>
-    implements $SalesApiResponseCopyWith<$Res> {
-  _$SalesApiResponseCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? success = freezed,
-    Object? message = freezed,
-    Object? dataSales = freezed,
-  }) {
-    return _then(_value.copyWith(
-      success: freezed == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      dataSales: freezed == dataSales
-          ? _value.dataSales
-          : dataSales // ignore: cast_nullable_to_non_nullable
-              as DataSales?,
-    ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $DataSalesCopyWith<$Res>? get dataSales {
-    if (_value.dataSales == null) {
-      return null;
-    }
-
-    return $DataSalesCopyWith<$Res>(_value.dataSales!, (value) {
-      return _then(_value.copyWith(dataSales: value) as $Val);
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$_SalesApiResponseCopyWith<$Res>
-    implements $SalesApiResponseCopyWith<$Res> {
-  factory _$$_SalesApiResponseCopyWith(
-          _$_SalesApiResponse value, $Res Function(_$_SalesApiResponse) then) =
-      __$$_SalesApiResponseCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({bool? success, String? message, DataSales? dataSales});
-
-  @override
-  $DataSalesCopyWith<$Res>? get dataSales;
-}
-
-/// @nodoc
-class __$$_SalesApiResponseCopyWithImpl<$Res>
-    extends _$SalesApiResponseCopyWithImpl<$Res, _$_SalesApiResponse>
-    implements _$$_SalesApiResponseCopyWith<$Res> {
-  __$$_SalesApiResponseCopyWithImpl(
-      _$_SalesApiResponse _value, $Res Function(_$_SalesApiResponse) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? success = freezed,
-    Object? message = freezed,
-    Object? dataSales = freezed,
-  }) {
-    return _then(_$_SalesApiResponse(
-      success: freezed == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      dataSales: freezed == dataSales
-          ? _value.dataSales
-          : dataSales // ignore: cast_nullable_to_non_nullable
-              as DataSales?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_SalesApiResponse implements _SalesApiResponse {
-  _$_SalesApiResponse({this.success, this.message, this.dataSales});
-
-  factory _$_SalesApiResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_SalesApiResponseFromJson(json);
-
-  @override
-  final bool? success;
-  @override
-  final String? message;
-  @override
-  final DataSales? dataSales;
-
-  @override
-  String toString() {
-    return 'SalesApiResponse(success: $success, message: $message, dataSales: $dataSales)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_SalesApiResponse &&
-            (identical(other.success, success) || other.success == success) &&
-            (identical(other.message, message) || other.message == message) &&
-            (identical(other.dataSales, dataSales) ||
-                other.dataSales == dataSales));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, success, message, dataSales);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_SalesApiResponseCopyWith<_$_SalesApiResponse> get copyWith =>
-      __$$_SalesApiResponseCopyWithImpl<_$_SalesApiResponse>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_SalesApiResponseToJson(
-      this,
-    );
-  }
-}
-
-abstract class _SalesApiResponse implements SalesApiResponse {
-  factory _SalesApiResponse(
-      {final bool? success,
-      final String? message,
-      final DataSales? dataSales}) = _$_SalesApiResponse;
-
-  factory _SalesApiResponse.fromJson(Map<String, dynamic> json) =
-      _$_SalesApiResponse.fromJson;
-
-  @override
-  bool? get success;
-  @override
-  String? get message;
-  @override
-  DataSales? get dataSales;
-  @override
-  @JsonKey(ignore: true)
-  _$$_SalesApiResponseCopyWith<_$_SalesApiResponse> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
 DataSales _$DataSalesFromJson(Map<String, dynamic> json) {
   return _DataSales.fromJson(json);
 }
 
 /// @nodoc
 mixin _$DataSales {
-  List<Sales>? get sales => throw _privateConstructorUsedError;
-  Map<String, dynamic>? get table2 => throw _privateConstructorUsedError;
+  @JsonKey(name: 'dataSales')
+  SalesData? get dataSales => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -723,7 +534,9 @@ abstract class $DataSalesCopyWith<$Res> {
   factory $DataSalesCopyWith(DataSales value, $Res Function(DataSales) then) =
       _$DataSalesCopyWithImpl<$Res, DataSales>;
   @useResult
-  $Res call({List<Sales>? sales, Map<String, dynamic>? table2});
+  $Res call({@JsonKey(name: 'dataSales') SalesData? dataSales});
+
+  $SalesDataCopyWith<$Res>? get dataSales;
 }
 
 /// @nodoc
@@ -739,19 +552,26 @@ class _$DataSalesCopyWithImpl<$Res, $Val extends DataSales>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? sales = freezed,
-    Object? table2 = freezed,
+    Object? dataSales = freezed,
   }) {
     return _then(_value.copyWith(
-      sales: freezed == sales
-          ? _value.sales
-          : sales // ignore: cast_nullable_to_non_nullable
-              as List<Sales>?,
-      table2: freezed == table2
-          ? _value.table2
-          : table2 // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>?,
+      dataSales: freezed == dataSales
+          ? _value.dataSales
+          : dataSales // ignore: cast_nullable_to_non_nullable
+              as SalesData?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SalesDataCopyWith<$Res>? get dataSales {
+    if (_value.dataSales == null) {
+      return null;
+    }
+
+    return $SalesDataCopyWith<$Res>(_value.dataSales!, (value) {
+      return _then(_value.copyWith(dataSales: value) as $Val);
+    });
   }
 }
 
@@ -762,7 +582,10 @@ abstract class _$$_DataSalesCopyWith<$Res> implements $DataSalesCopyWith<$Res> {
       __$$_DataSalesCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Sales>? sales, Map<String, dynamic>? table2});
+  $Res call({@JsonKey(name: 'dataSales') SalesData? dataSales});
+
+  @override
+  $SalesDataCopyWith<$Res>? get dataSales;
 }
 
 /// @nodoc
@@ -776,18 +599,13 @@ class __$$_DataSalesCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? sales = freezed,
-    Object? table2 = freezed,
+    Object? dataSales = freezed,
   }) {
     return _then(_$_DataSales(
-      sales: freezed == sales
-          ? _value._sales
-          : sales // ignore: cast_nullable_to_non_nullable
-              as List<Sales>?,
-      table2: freezed == table2
-          ? _value._table2
-          : table2 // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>?,
+      dataSales: freezed == dataSales
+          ? _value.dataSales
+          : dataSales // ignore: cast_nullable_to_non_nullable
+              as SalesData?,
     ));
   }
 }
@@ -795,36 +613,18 @@ class __$$_DataSalesCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_DataSales implements _DataSales {
-  _$_DataSales({final List<Sales>? sales, final Map<String, dynamic>? table2})
-      : _sales = sales,
-        _table2 = table2;
+  _$_DataSales({@JsonKey(name: 'dataSales') this.dataSales});
 
   factory _$_DataSales.fromJson(Map<String, dynamic> json) =>
       _$$_DataSalesFromJson(json);
 
-  final List<Sales>? _sales;
   @override
-  List<Sales>? get sales {
-    final value = _sales;
-    if (value == null) return null;
-    if (_sales is EqualUnmodifiableListView) return _sales;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  final Map<String, dynamic>? _table2;
-  @override
-  Map<String, dynamic>? get table2 {
-    final value = _table2;
-    if (value == null) return null;
-    if (_table2 is EqualUnmodifiableMapView) return _table2;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(value);
-  }
+  @JsonKey(name: 'dataSales')
+  final SalesData? dataSales;
 
   @override
   String toString() {
-    return 'DataSales(sales: $sales, table2: $table2)';
+    return 'DataSales(dataSales: $dataSales)';
   }
 
   @override
@@ -832,16 +632,13 @@ class _$_DataSales implements _DataSales {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_DataSales &&
-            const DeepCollectionEquality().equals(other._sales, _sales) &&
-            const DeepCollectionEquality().equals(other._table2, _table2));
+            (identical(other.dataSales, dataSales) ||
+                other.dataSales == dataSales));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_sales),
-      const DeepCollectionEquality().hash(_table2));
+  int get hashCode => Object.hash(runtimeType, dataSales);
 
   @JsonKey(ignore: true)
   @override
@@ -858,19 +655,584 @@ class _$_DataSales implements _DataSales {
 }
 
 abstract class _DataSales implements DataSales {
-  factory _DataSales(
-      {final List<Sales>? sales,
-      final Map<String, dynamic>? table2}) = _$_DataSales;
+  factory _DataSales({@JsonKey(name: 'dataSales') final SalesData? dataSales}) =
+      _$_DataSales;
 
   factory _DataSales.fromJson(Map<String, dynamic> json) =
       _$_DataSales.fromJson;
 
   @override
-  List<Sales>? get sales;
-  @override
-  Map<String, dynamic>? get table2;
+  @JsonKey(name: 'dataSales')
+  SalesData? get dataSales;
   @override
   @JsonKey(ignore: true)
   _$$_DataSalesCopyWith<_$_DataSales> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+SalesData _$SalesDataFromJson(Map<String, dynamic> json) {
+  return _SalesData.fromJson(json);
+}
+
+/// @nodoc
+mixin _$SalesData {
+  List<SalesItem>? get sales => throw _privateConstructorUsedError;
+  @JsonKey(name: "Table2")
+  Table2? get table2 => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SalesDataCopyWith<SalesData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SalesDataCopyWith<$Res> {
+  factory $SalesDataCopyWith(SalesData value, $Res Function(SalesData) then) =
+      _$SalesDataCopyWithImpl<$Res, SalesData>;
+  @useResult
+  $Res call({List<SalesItem>? sales, @JsonKey(name: "Table2") Table2? table2});
+
+  $Table2CopyWith<$Res>? get table2;
+}
+
+/// @nodoc
+class _$SalesDataCopyWithImpl<$Res, $Val extends SalesData>
+    implements $SalesDataCopyWith<$Res> {
+  _$SalesDataCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? sales = freezed,
+    Object? table2 = freezed,
+  }) {
+    return _then(_value.copyWith(
+      sales: freezed == sales
+          ? _value.sales
+          : sales // ignore: cast_nullable_to_non_nullable
+              as List<SalesItem>?,
+      table2: freezed == table2
+          ? _value.table2
+          : table2 // ignore: cast_nullable_to_non_nullable
+              as Table2?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $Table2CopyWith<$Res>? get table2 {
+    if (_value.table2 == null) {
+      return null;
+    }
+
+    return $Table2CopyWith<$Res>(_value.table2!, (value) {
+      return _then(_value.copyWith(table2: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_SalesDataCopyWith<$Res> implements $SalesDataCopyWith<$Res> {
+  factory _$$_SalesDataCopyWith(
+          _$_SalesData value, $Res Function(_$_SalesData) then) =
+      __$$_SalesDataCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<SalesItem>? sales, @JsonKey(name: "Table2") Table2? table2});
+
+  @override
+  $Table2CopyWith<$Res>? get table2;
+}
+
+/// @nodoc
+class __$$_SalesDataCopyWithImpl<$Res>
+    extends _$SalesDataCopyWithImpl<$Res, _$_SalesData>
+    implements _$$_SalesDataCopyWith<$Res> {
+  __$$_SalesDataCopyWithImpl(
+      _$_SalesData _value, $Res Function(_$_SalesData) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? sales = freezed,
+    Object? table2 = freezed,
+  }) {
+    return _then(_$_SalesData(
+      sales: freezed == sales
+          ? _value._sales
+          : sales // ignore: cast_nullable_to_non_nullable
+              as List<SalesItem>?,
+      table2: freezed == table2
+          ? _value.table2
+          : table2 // ignore: cast_nullable_to_non_nullable
+              as Table2?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_SalesData implements _SalesData {
+  const _$_SalesData(
+      {final List<SalesItem>? sales, @JsonKey(name: "Table2") this.table2})
+      : _sales = sales;
+
+  factory _$_SalesData.fromJson(Map<String, dynamic> json) =>
+      _$$_SalesDataFromJson(json);
+
+  final List<SalesItem>? _sales;
+  @override
+  List<SalesItem>? get sales {
+    final value = _sales;
+    if (value == null) return null;
+    if (_sales is EqualUnmodifiableListView) return _sales;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey(name: "Table2")
+  final Table2? table2;
+
+  @override
+  String toString() {
+    return 'SalesData(sales: $sales, table2: $table2)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SalesData &&
+            const DeepCollectionEquality().equals(other._sales, _sales) &&
+            (identical(other.table2, table2) || other.table2 == table2));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_sales), table2);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SalesDataCopyWith<_$_SalesData> get copyWith =>
+      __$$_SalesDataCopyWithImpl<_$_SalesData>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_SalesDataToJson(
+      this,
+    );
+  }
+}
+
+abstract class _SalesData implements SalesData {
+  const factory _SalesData(
+      {final List<SalesItem>? sales,
+      @JsonKey(name: "Table2") final Table2? table2}) = _$_SalesData;
+
+  factory _SalesData.fromJson(Map<String, dynamic> json) =
+      _$_SalesData.fromJson;
+
+  @override
+  List<SalesItem>? get sales;
+  @override
+  @JsonKey(name: "Table2")
+  Table2? get table2;
+  @override
+  @JsonKey(ignore: true)
+  _$$_SalesDataCopyWith<_$_SalesData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+SalesItem _$SalesItemFromJson(Map<String, dynamic> json) {
+  return _SalesItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$SalesItem {
+  @JsonKey(name: "NO")
+  String? get no => throw _privateConstructorUsedError;
+  String? get transactionID => throw _privateConstructorUsedError;
+  String? get transactionDate => throw _privateConstructorUsedError;
+  String? get transactionAddress => throw _privateConstructorUsedError;
+  String? get transactionDelivery => throw _privateConstructorUsedError;
+  String? get transactionPayment => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SalesItemCopyWith<SalesItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SalesItemCopyWith<$Res> {
+  factory $SalesItemCopyWith(SalesItem value, $Res Function(SalesItem) then) =
+      _$SalesItemCopyWithImpl<$Res, SalesItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: "NO") String? no,
+      String? transactionID,
+      String? transactionDate,
+      String? transactionAddress,
+      String? transactionDelivery,
+      String? transactionPayment});
+}
+
+/// @nodoc
+class _$SalesItemCopyWithImpl<$Res, $Val extends SalesItem>
+    implements $SalesItemCopyWith<$Res> {
+  _$SalesItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? no = freezed,
+    Object? transactionID = freezed,
+    Object? transactionDate = freezed,
+    Object? transactionAddress = freezed,
+    Object? transactionDelivery = freezed,
+    Object? transactionPayment = freezed,
+  }) {
+    return _then(_value.copyWith(
+      no: freezed == no
+          ? _value.no
+          : no // ignore: cast_nullable_to_non_nullable
+              as String?,
+      transactionID: freezed == transactionID
+          ? _value.transactionID
+          : transactionID // ignore: cast_nullable_to_non_nullable
+              as String?,
+      transactionDate: freezed == transactionDate
+          ? _value.transactionDate
+          : transactionDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      transactionAddress: freezed == transactionAddress
+          ? _value.transactionAddress
+          : transactionAddress // ignore: cast_nullable_to_non_nullable
+              as String?,
+      transactionDelivery: freezed == transactionDelivery
+          ? _value.transactionDelivery
+          : transactionDelivery // ignore: cast_nullable_to_non_nullable
+              as String?,
+      transactionPayment: freezed == transactionPayment
+          ? _value.transactionPayment
+          : transactionPayment // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_SalesItemCopyWith<$Res> implements $SalesItemCopyWith<$Res> {
+  factory _$$_SalesItemCopyWith(
+          _$_SalesItem value, $Res Function(_$_SalesItem) then) =
+      __$$_SalesItemCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: "NO") String? no,
+      String? transactionID,
+      String? transactionDate,
+      String? transactionAddress,
+      String? transactionDelivery,
+      String? transactionPayment});
+}
+
+/// @nodoc
+class __$$_SalesItemCopyWithImpl<$Res>
+    extends _$SalesItemCopyWithImpl<$Res, _$_SalesItem>
+    implements _$$_SalesItemCopyWith<$Res> {
+  __$$_SalesItemCopyWithImpl(
+      _$_SalesItem _value, $Res Function(_$_SalesItem) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? no = freezed,
+    Object? transactionID = freezed,
+    Object? transactionDate = freezed,
+    Object? transactionAddress = freezed,
+    Object? transactionDelivery = freezed,
+    Object? transactionPayment = freezed,
+  }) {
+    return _then(_$_SalesItem(
+      no: freezed == no
+          ? _value.no
+          : no // ignore: cast_nullable_to_non_nullable
+              as String?,
+      transactionID: freezed == transactionID
+          ? _value.transactionID
+          : transactionID // ignore: cast_nullable_to_non_nullable
+              as String?,
+      transactionDate: freezed == transactionDate
+          ? _value.transactionDate
+          : transactionDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      transactionAddress: freezed == transactionAddress
+          ? _value.transactionAddress
+          : transactionAddress // ignore: cast_nullable_to_non_nullable
+              as String?,
+      transactionDelivery: freezed == transactionDelivery
+          ? _value.transactionDelivery
+          : transactionDelivery // ignore: cast_nullable_to_non_nullable
+              as String?,
+      transactionPayment: freezed == transactionPayment
+          ? _value.transactionPayment
+          : transactionPayment // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_SalesItem implements _SalesItem {
+  const _$_SalesItem(
+      {@JsonKey(name: "NO") this.no,
+      this.transactionID,
+      this.transactionDate,
+      this.transactionAddress,
+      this.transactionDelivery,
+      this.transactionPayment});
+
+  factory _$_SalesItem.fromJson(Map<String, dynamic> json) =>
+      _$$_SalesItemFromJson(json);
+
+  @override
+  @JsonKey(name: "NO")
+  final String? no;
+  @override
+  final String? transactionID;
+  @override
+  final String? transactionDate;
+  @override
+  final String? transactionAddress;
+  @override
+  final String? transactionDelivery;
+  @override
+  final String? transactionPayment;
+
+  @override
+  String toString() {
+    return 'SalesItem(no: $no, transactionID: $transactionID, transactionDate: $transactionDate, transactionAddress: $transactionAddress, transactionDelivery: $transactionDelivery, transactionPayment: $transactionPayment)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SalesItem &&
+            (identical(other.no, no) || other.no == no) &&
+            (identical(other.transactionID, transactionID) ||
+                other.transactionID == transactionID) &&
+            (identical(other.transactionDate, transactionDate) ||
+                other.transactionDate == transactionDate) &&
+            (identical(other.transactionAddress, transactionAddress) ||
+                other.transactionAddress == transactionAddress) &&
+            (identical(other.transactionDelivery, transactionDelivery) ||
+                other.transactionDelivery == transactionDelivery) &&
+            (identical(other.transactionPayment, transactionPayment) ||
+                other.transactionPayment == transactionPayment));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      no,
+      transactionID,
+      transactionDate,
+      transactionAddress,
+      transactionDelivery,
+      transactionPayment);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SalesItemCopyWith<_$_SalesItem> get copyWith =>
+      __$$_SalesItemCopyWithImpl<_$_SalesItem>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_SalesItemToJson(
+      this,
+    );
+  }
+}
+
+abstract class _SalesItem implements SalesItem {
+  const factory _SalesItem(
+      {@JsonKey(name: "NO") final String? no,
+      final String? transactionID,
+      final String? transactionDate,
+      final String? transactionAddress,
+      final String? transactionDelivery,
+      final String? transactionPayment}) = _$_SalesItem;
+
+  factory _SalesItem.fromJson(Map<String, dynamic> json) =
+      _$_SalesItem.fromJson;
+
+  @override
+  @JsonKey(name: "NO")
+  String? get no;
+  @override
+  String? get transactionID;
+  @override
+  String? get transactionDate;
+  @override
+  String? get transactionAddress;
+  @override
+  String? get transactionDelivery;
+  @override
+  String? get transactionPayment;
+  @override
+  @JsonKey(ignore: true)
+  _$$_SalesItemCopyWith<_$_SalesItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Table2 _$Table2FromJson(Map<String, dynamic> json) {
+  return _Table2.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Table2 {
+  String? get totalPage => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $Table2CopyWith<Table2> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $Table2CopyWith<$Res> {
+  factory $Table2CopyWith(Table2 value, $Res Function(Table2) then) =
+      _$Table2CopyWithImpl<$Res, Table2>;
+  @useResult
+  $Res call({String? totalPage});
+}
+
+/// @nodoc
+class _$Table2CopyWithImpl<$Res, $Val extends Table2>
+    implements $Table2CopyWith<$Res> {
+  _$Table2CopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? totalPage = freezed,
+  }) {
+    return _then(_value.copyWith(
+      totalPage: freezed == totalPage
+          ? _value.totalPage
+          : totalPage // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_Table2CopyWith<$Res> implements $Table2CopyWith<$Res> {
+  factory _$$_Table2CopyWith(_$_Table2 value, $Res Function(_$_Table2) then) =
+      __$$_Table2CopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String? totalPage});
+}
+
+/// @nodoc
+class __$$_Table2CopyWithImpl<$Res>
+    extends _$Table2CopyWithImpl<$Res, _$_Table2>
+    implements _$$_Table2CopyWith<$Res> {
+  __$$_Table2CopyWithImpl(_$_Table2 _value, $Res Function(_$_Table2) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? totalPage = freezed,
+  }) {
+    return _then(_$_Table2(
+      totalPage: freezed == totalPage
+          ? _value.totalPage
+          : totalPage // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_Table2 implements _Table2 {
+  const _$_Table2({this.totalPage});
+
+  factory _$_Table2.fromJson(Map<String, dynamic> json) =>
+      _$$_Table2FromJson(json);
+
+  @override
+  final String? totalPage;
+
+  @override
+  String toString() {
+    return 'Table2(totalPage: $totalPage)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Table2 &&
+            (identical(other.totalPage, totalPage) ||
+                other.totalPage == totalPage));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, totalPage);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_Table2CopyWith<_$_Table2> get copyWith =>
+      __$$_Table2CopyWithImpl<_$_Table2>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_Table2ToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Table2 implements Table2 {
+  const factory _Table2({final String? totalPage}) = _$_Table2;
+
+  factory _Table2.fromJson(Map<String, dynamic> json) = _$_Table2.fromJson;
+
+  @override
+  String? get totalPage;
+  @override
+  @JsonKey(ignore: true)
+  _$$_Table2CopyWith<_$_Table2> get copyWith =>
       throw _privateConstructorUsedError;
 }

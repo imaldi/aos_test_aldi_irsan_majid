@@ -17,42 +17,62 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
 
     context.read<MainBloc>().add(const FetchProductListEvent());
+    // context.read<MainBloc>().add(const FetchSalesListEvent());
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Marketpedia"),),
-      body: Column(
-        children: [
-          const Placeholder(child: Text("Carousel")),
-          const Placeholder(child: Text("Categories")),
-          Column(children: [
-            const Row(
-              children: [
-                Text("New Arrivals"),
-                Text("View More >"),
-              ],
-            ),
-            BlocBuilder<MainBloc,MainState>(
-              builder: (context,state) {
-                var productList = [];
-                if(state is FetchProductSuccess){
-                  productList = state.productList;
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const Placeholder(child: Text("Carousel")),
+            const Placeholder(child: Text("Categories")),
+            Column(children: [
+              const Row(
+                children: [
+                  Text("New Arrivals"),
+                  Text("View More >"),
+                ],
+              ),
+              BlocBuilder<MainBloc,MainState>(
+                builder: (context,state) {
+                  var productList = [];
+                  var salesList = [];
+                  if(state is FetchProductSuccess){
+                    productList = state.productList;
+                    return ListView.builder(
+                        shrinkWrap: true,
+                        physics: const ClampingScrollPhysics(),
+                        itemCount: productList.length,
+                        itemBuilder: (c,i){
+                          return ListTile(
+                            title: Text("Item ke ${i+1}",),
+                            subtitle: Text("${productList[i]}",),
+                          );
+                        });
+
+                  }
+                  if(state is FetchSalesSuccess){
+                    salesList = state.salesItem;
+                    return ListView.builder(
+                        shrinkWrap: true,
+                        physics: const ClampingScrollPhysics(),
+                        itemCount: salesList.length,
+                        itemBuilder: (c,i){
+                          return ListTile(
+                            title: Text("Item ke ${i+1}",),
+                            subtitle: Text("${salesList[i]}",),
+                          );
+                        });
+
+                  }
+                  return Container();
                 }
-                return ListView.builder(
-                    shrinkWrap: true,
-                    physics: const ClampingScrollPhysics(),
-                    itemCount: productList.length,
-                    itemBuilder: (c,i){
-                  return ListTile(
-                      title: Text("Item ke ${i+1}",),
-                      subtitle: Text("${productList[i]}",),
-                      );
-                });
-              }
-            )
-          ],)
-        ],
+              ),
+            ],)
+          ],
+        ),
       ),
     );
   }

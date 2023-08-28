@@ -18,8 +18,10 @@ final class FetchProductSuccess extends MainState {
 }
 
 final class FetchSalesSuccess extends MainState {
+  const FetchSalesSuccess(this.salesItem);
+  final List<SalesItem> salesItem;
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [salesItem];
 }
 
 final class UpdateSalesSuccess extends MainState {

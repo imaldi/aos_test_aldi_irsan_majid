@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 
 import '../../../../core/resource/const/repository_consts.dart';
 import '../../../../data/model/response/product/product_response.dart';
+import '../../../../data/model/response/sales/sales_response.dart';
 
 part 'main_event.dart';
 part 'main_state.dart';
@@ -16,19 +17,21 @@ class MainBloc extends Bloc<MainEvent, MainState> {
           pmethod: fetchProductKey,
           pemail: defaultEmailKey,
           pwhere6: (event.pageNumber ?? 1).toString(),
-          pwhere7: (event.totalPerPage ?? 4).toString());
+          pwhere7: (event.totalPerPage ?? 6).toString());
 
       emit(FetchProductSuccess(productList));
     });
     on<FetchSalesListEvent>((event, emit) async {
-      var salesList = await repository.fetchProductList(
+      var salesList = await repository.fetchSalesList(
           key: requestKey,
           pmethod: fetchSalesKey,
           pemail: defaultEmailKey,
+          pwhere2: defaultStartDateKey,
+          pwhere3: defaultEndDateKey,
           pwhere6: (event.pageNumber ?? 1).toString(),
-          pwhere7: (event.totalPerPage ?? 4).toString());
+          pwhere7: (event.totalPerPage ?? 5).toString());
 
-      emit(FetchProductSuccess(salesList));
+      emit(FetchSalesSuccess(salesList));
     });
     on<UpdateSalesDataEvent>((event, emit) {});
   }

@@ -29,17 +29,17 @@ class Product with _$Product {
 }
 
 @freezed
-class Data with _$Data {
+class ProductData with _$ProductData {
   @HiveType(
       typeId: productDataModelTypeId, adapterName: 'ProductDataModelAdapter')
-  factory Data({
+  factory ProductData({
     @JsonKey(name:"Table")
     @HiveField(0) required List<Product> table,
     @JsonKey(name:"Table1")
     @HiveField(1) required List<Table1> table1,
-  }) = _Data;
+  }) = _ProductData;
 
-  factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
+  factory ProductData.fromJson(Map<String, dynamic> json) => _$ProductDataFromJson(json);
 }
 
 @freezed
@@ -56,16 +56,4 @@ class Table1 with _$Table1 {
 
 
 
-@freezed
-class ProductApiResponse with _$ProductApiResponse {
-  @HiveType(
-      typeId: productApiModelTypeId, adapterName: 'ProductApiModelAdapter')
-  factory ProductApiResponse({
-    @HiveField(0) @Default(false) bool? success,
-    @HiveField(1) String? message,
-    @HiveField(2) String? data,
-  }) = _ProductApiResponse;
 
-  factory ProductApiResponse.fromJson(Map<String, dynamic> json) =>
-      _$ProductApiResponseFromJson(json);
-}

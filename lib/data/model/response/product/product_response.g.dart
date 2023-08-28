@@ -61,24 +61,24 @@ class ProductModelAdapter extends TypeAdapter<_$_Product> {
           typeId == other.typeId;
 }
 
-class ProductDataModelAdapter extends TypeAdapter<_$_Data> {
+class ProductDataModelAdapter extends TypeAdapter<_$_ProductData> {
   @override
   final int typeId = 2;
 
   @override
-  _$_Data read(BinaryReader reader) {
+  _$_ProductData read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return _$_Data(
+    return _$_ProductData(
       table: (fields[0] as List).cast<Product>(),
       table1: (fields[1] as List).cast<Table1>(),
     );
   }
 
   @override
-  void write(BinaryWriter writer, _$_Data obj) {
+  void write(BinaryWriter writer, _$_ProductData obj) {
     writer
       ..writeByte(2)
       ..writeByte(0)
@@ -132,46 +132,6 @@ class Table1ModelAdapter extends TypeAdapter<_$_Table1> {
           typeId == other.typeId;
 }
 
-class ProductApiModelAdapter extends TypeAdapter<_$_ProductApiResponse> {
-  @override
-  final int typeId = 3;
-
-  @override
-  _$_ProductApiResponse read(BinaryReader reader) {
-    final numOfFields = reader.readByte();
-    final fields = <int, dynamic>{
-      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
-    };
-    return _$_ProductApiResponse(
-      success: fields[0] as bool?,
-      message: fields[1] as String?,
-      data: fields[2] as String?,
-    );
-  }
-
-  @override
-  void write(BinaryWriter writer, _$_ProductApiResponse obj) {
-    writer
-      ..writeByte(3)
-      ..writeByte(0)
-      ..write(obj.success)
-      ..writeByte(1)
-      ..write(obj.message)
-      ..writeByte(2)
-      ..write(obj.data);
-  }
-
-  @override
-  int get hashCode => typeId.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ProductApiModelAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
-}
-
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
@@ -199,7 +159,8 @@ Map<String, dynamic> _$$_ProductToJson(_$_Product instance) =>
       'quantity': instance.quantity,
     };
 
-_$_Data _$$_DataFromJson(Map<String, dynamic> json) => _$_Data(
+_$_ProductData _$$_ProductDataFromJson(Map<String, dynamic> json) =>
+    _$_ProductData(
       table: (json['Table'] as List<dynamic>)
           .map((e) => Product.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -208,7 +169,8 @@ _$_Data _$$_DataFromJson(Map<String, dynamic> json) => _$_Data(
           .toList(),
     );
 
-Map<String, dynamic> _$$_DataToJson(_$_Data instance) => <String, dynamic>{
+Map<String, dynamic> _$$_ProductDataToJson(_$_ProductData instance) =>
+    <String, dynamic>{
       'Table': instance.table,
       'Table1': instance.table1,
     };
@@ -219,20 +181,4 @@ _$_Table1 _$$_Table1FromJson(Map<String, dynamic> json) => _$_Table1(
 
 Map<String, dynamic> _$$_Table1ToJson(_$_Table1 instance) => <String, dynamic>{
       'totalPage': instance.totalPage,
-    };
-
-_$_ProductApiResponse _$$_ProductApiResponseFromJson(
-        Map<String, dynamic> json) =>
-    _$_ProductApiResponse(
-      success: json['success'] as bool? ?? false,
-      message: json['message'] as String?,
-      data: json['data'] as String?,
-    );
-
-Map<String, dynamic> _$$_ProductApiResponseToJson(
-        _$_ProductApiResponse instance) =>
-    <String, dynamic>{
-      'success': instance.success,
-      'message': instance.message,
-      'data': instance.data,
     };
