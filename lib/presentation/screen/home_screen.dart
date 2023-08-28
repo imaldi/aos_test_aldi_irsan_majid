@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../data/model/response/product/product_response.dart';
+import '../widget/product_tile.dart';
+
 @RoutePage()
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -19,58 +22,66 @@ class _HomeScreenState extends State<HomeScreen> {
     context.read<MainBloc>().add(const FetchProductListEvent());
     // context.read<MainBloc>().add(const FetchSalesListEvent());
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Marketpedia"),),
+      appBar: AppBar(
+        title: const Text("Marketpedia"),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             const Placeholder(child: Text("Carousel")),
             const Placeholder(child: Text("Categories")),
-            Column(children: [
-              const Row(
-                children: [
-                  Text("New Arrivals"),
-                  Text("View More >"),
-                ],
-              ),
-              BlocBuilder<MainBloc,MainState>(
-                builder: (context,state) {
-                  var productList = [];
+            Column(
+              children: [
+                const Row(
+                  children: [
+                    Text("New Arrivals"),
+                    Text("View More >"),
+                  ],
+                ),
+                BlocBuilder<MainBloc, MainState>(builder: (context, state) {
+                  var productList = <Product>[];
                   var salesList = [];
-                  if(state is FetchProductSuccess){
+                  if (state is FetchProductSuccess) {
                     productList = state.productList;
                     return ListView.builder(
                         shrinkWrap: true,
                         physics: const ClampingScrollPhysics(),
                         itemCount: productList.length,
-                        itemBuilder: (c,i){
-                          return ListTile(
-                            title: Text("Item ke ${i+1}",),
-                            subtitle: Text("${productList[i]}",),
+                        itemBuilder: (c, i) {
+                          return ProductTile(
+                            imageUrl: productList[i].productPhoto ?? "",
                           );
+                          // return ListTile(
+                          //   title: Text("Item ke ${i+1}",),
+                          //   subtitle: Text("${productList[i]}",),
+                          // );
                         });
-
                   }
-                  if(state is FetchSalesSuccess){
+                  if (state is FetchSalesSuccess) {
                     salesList = state.salesItem;
                     return ListView.builder(
                         shrinkWrap: true,
                         physics: const ClampingScrollPhysics(),
                         itemCount: salesList.length,
-                        itemBuilder: (c,i){
+                        itemBuilder: (c, i) {
                           return ListTile(
-                            title: Text("Item ke ${i+1}",),
-                            subtitle: Text("${salesList[i]}",),
+                            title: Text(
+                              "Item ke ${i + 1}",
+                            ),
+                            subtitle: Text(
+                              "${salesList[i]}",
+                            ),
                           );
                         });
-
                   }
                   return Container();
-                }
-              ),
-            ],)
+                }),
+              ],
+            )
           ],
         ),
       ),

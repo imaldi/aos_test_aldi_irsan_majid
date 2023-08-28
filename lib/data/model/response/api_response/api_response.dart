@@ -8,8 +8,7 @@ part 'api_response.g.dart';
 
 @freezed
 class ApiResponse with _$ApiResponse {
-  @HiveType(
-      typeId: apiModelTypeId, adapterName: 'ApiResponseAdapter')
+  @HiveType(typeId: apiModelTypeId, adapterName: 'ApiResponseAdapter')
   factory ApiResponse({
     @HiveField(0) @Default(false) bool? success,
     @HiveField(1) String? message,

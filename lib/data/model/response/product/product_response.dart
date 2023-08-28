@@ -11,9 +11,7 @@ part 'product_response.g.dart'; // Generated file from json_serializable
 class Product with _$Product {
   @HiveType(typeId: productModelTypeId, adapterName: 'ProductModelAdapter')
   factory Product(
-      {
-        @JsonKey(name: "NO")
-        @HiveField(0) int? no,
+      {@JsonKey(name: "NO") @HiveField(0) int? no,
       @HiveField(1) String? productId,
       @HiveField(2) String? productName,
       @HiveField(3) String? productDescription,
@@ -33,27 +31,20 @@ class ProductData with _$ProductData {
   @HiveType(
       typeId: productDataModelTypeId, adapterName: 'ProductDataModelAdapter')
   factory ProductData({
-    @JsonKey(name:"Table")
-    @HiveField(0) required List<Product> table,
-    @JsonKey(name:"Table1")
-    @HiveField(1) required List<Table1> table1,
+    @JsonKey(name: "Table") @HiveField(0) required List<Product> table,
+    @JsonKey(name: "Table1") @HiveField(1) required List<Table1> table1,
   }) = _ProductData;
 
-  factory ProductData.fromJson(Map<String, dynamic> json) => _$ProductDataFromJson(json);
+  factory ProductData.fromJson(Map<String, dynamic> json) =>
+      _$ProductDataFromJson(json);
 }
 
 @freezed
 class Table1 with _$Table1 {
-  @HiveType(
-      typeId: table1ModelTypeId, adapterName: 'Table1ModelAdapter')
+  @HiveType(typeId: table1ModelTypeId, adapterName: 'Table1ModelAdapter')
   factory Table1({
-    @Default(0)
-    @HiveField(0) int? totalPage,
+    @Default(0) @HiveField(0) int? totalPage,
   }) = _Table1;
 
   factory Table1.fromJson(Map<String, dynamic> json) => _$Table1FromJson(json);
 }
-
-
-
-

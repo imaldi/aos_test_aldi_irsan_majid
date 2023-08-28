@@ -33,8 +33,6 @@ class Sales with _$Sales {
   factory Sales.fromJson(Map<String, dynamic> json) => _$SalesFromJson(json);
 }
 
-
-
 @freezed
 class DataSales with _$DataSales {
   factory DataSales({
@@ -79,5 +77,3 @@ class Table2 with _$Table2 {
 
   factory Table2.fromJson(Map<String, dynamic> json) => _$Table2FromJson(json);
 }
-
-

@@ -105,13 +105,14 @@ class MainRepositoryImpl implements MainRepository {
         "pversion": pversion,
       };
       // make the API request
-      final response = await http.post(url, headers: headerMap, body: jsonEncode(bodyMap));
+      final response =
+          await http.post(url, headers: headerMap, body: jsonEncode(bodyMap));
       print("Response Product: ${response.body}");
       // return the product list
       if (response.statusCode == 200) {
-        var responseBody =
-            ApiResponse.fromJson(jsonDecode(response.body));
-        var dataJson = ProductData.fromJson(jsonDecode(responseBody.data ?? "{}"));
+        var responseBody = ApiResponse.fromJson(jsonDecode(response.body));
+        var dataJson =
+            ProductData.fromJson(jsonDecode(responseBody.data ?? "{}"));
         log("responseBody: ${dataJson.toJson().toString()}");
 
         // var productList = responseBody.data?.products ?? [];
@@ -166,11 +167,16 @@ class MainRepositoryImpl implements MainRepository {
         "pversion": pversion,
       };
       // make the API request
-      final response = await http.post(url, headers: headerMap, body: jsonEncode(bodyMap));
+      final response =
+          await http.post(url, headers: headerMap, body: jsonEncode(bodyMap));
       // return the product list
       if (response.statusCode == 200) {
         var responseBody = ApiResponse.fromJson(jsonDecode(response.body));
-        var salesList = DataSales.fromJson(jsonDecode(responseBody.data ?? "{}")).dataSales?.sales ?? [];
+        var salesList =
+            DataSales.fromJson(jsonDecode(responseBody.data ?? "{}"))
+                    .dataSales
+                    ?.sales ??
+                [];
         return salesList;
       }
       return [];
