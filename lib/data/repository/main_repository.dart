@@ -22,7 +22,7 @@ abstract class MainRepository {
     String? pdevice,
     String? pgcm_id,
     String? pversion,
-});
+  });
 
   Future<List<Sales>> fetchSalesList({
     required String? key,
@@ -39,10 +39,9 @@ abstract class MainRepository {
     String? pdevice,
     String? pgcm_id,
     String? pversion,
-});
+  });
 
-  Future<bool> updateSalesData(
-  {
+  Future<bool> updateSalesData({
     String? key,
     String? pmethod,
     String? pdata1,
@@ -58,104 +57,142 @@ abstract class MainRepository {
     String? pdataDetail,
     String? pdevice,
     String? pgcm_id,
-
-  }
-      );
+  });
 }
 
-class ProductRepositoryImpl implements MainRepository {
+class MainRepositoryImpl implements MainRepository {
   @override
-  Future<List<Product>> fetchProductList({required String? key, required String? pmethod, required String? pemail, String? pwhere1, String? pwhere2, String? pwhere3, String? pwhere4, String? pwhere5, required String? pwhere6, required String? pwhere7, String? pwhere8, String? pdevice, String? pgcm_id, String? pversion}) async {
-    try{
+  Future<List<Product>> fetchProductList(
+      {required String? key,
+      required String? pmethod,
+      required String? pemail,
+      String? pwhere1,
+      String? pwhere2,
+      String? pwhere3,
+      String? pwhere4,
+      String? pwhere5,
+      required String? pwhere6,
+      required String? pwhere7,
+      String? pwhere8,
+      String? pdevice,
+      String? pgcm_id,
+      String? pversion}) async {
+    try {
       // prepare the url
       var url = Uri.https(baseUrl, masterDataUrl);
       // prepare the header
       var headerMap = {
-        "Accept" : "application/json",
+        "Accept": "application/json",
       };
       // prepare the body
       var bodyMap = {
-        "KEY" : key,
-        "pmethod" : pmethod,
-        "pemail" : pemail,
-        "pwhere1" : pwhere1,
-        "pwhere2" : pwhere2,
-        "pwhere3" : pwhere3,
-        "pwhere4" : pwhere4,
-        "pwhere5" : pwhere5,
-        "pwhere6" : pwhere6,
-        "pwhere7" : pwhere7,
-        "pwhere8" : pwhere8,
-        "pdevice" : pdevice,
-        "pgcm_id" : pgcm_id,
-        "pversion" : pversion,
+        "KEY": key,
+        "pmethod": pmethod,
+        "pemail": pemail,
+        "pwhere1": pwhere1,
+        "pwhere2": pwhere2,
+        "pwhere3": pwhere3,
+        "pwhere4": pwhere4,
+        "pwhere5": pwhere5,
+        "pwhere6": pwhere6,
+        "pwhere7": pwhere7,
+        "pwhere8": pwhere8,
+        "pdevice": pdevice,
+        "pgcm_id": pgcm_id,
+        "pversion": pversion,
       };
       // make the API request
-      final response = await http.post(url,
-          headers: headerMap,
-          body: bodyMap);
+      final response = await http.post(url, headers: headerMap, body: bodyMap);
       // return the product list
-      if(response.statusCode == 200){
-        var responseBody = ProductApiResponse.fromJson(jsonDecode(response.body));
+      if (response.statusCode == 200) {
+        var responseBody =
+            ProductApiResponse.fromJson(jsonDecode(response.body));
         var productList = responseBody.data?.products ?? [];
         return productList;
       }
       return [];
-    } catch(e){
+    } catch (e) {
       throw Exception(e);
     }
   }
 
   @override
-  Future<List<Sales>> fetchSalesList({required String? key, required String? pmethod, required String? pemail, String? pwhere1, String? pwhere2, String? pwhere3, String? pwhere4, String? pwhere5, required String? pwhere6, required String? pwhere7, String? pwhere8, String? pdevice, String? pgcm_id, String? pversion}) async {
-    try{
+  Future<List<Sales>> fetchSalesList(
+      {required String? key,
+      required String? pmethod,
+      required String? pemail,
+      String? pwhere1,
+      String? pwhere2,
+      String? pwhere3,
+      String? pwhere4,
+      String? pwhere5,
+      required String? pwhere6,
+      required String? pwhere7,
+      String? pwhere8,
+      String? pdevice,
+      String? pgcm_id,
+      String? pversion}) async {
+    try {
       // prepare the url
       var url = Uri.https(baseUrl, masterDataUrl);
       // prepare the header
       var headerMap = {
-        "Accept" : "application/json",
+        "Accept": "application/json",
       };
       // prepare the body
       var bodyMap = {
-        "KEY" : key,
-        "pmethod" : pmethod,
-        "pemail" : pemail,
-        "pwhere1" : pwhere1,
-        "pwhere2" : pwhere2,
-        "pwhere3" : pwhere3,
-        "pwhere4" : pwhere4,
-        "pwhere5" : pwhere5,
-        "pwhere6" : pwhere6,
-        "pwhere7" : pwhere7,
-        "pwhere8" : pwhere8,
-        "pdevice" : pdevice,
-        "pgcm_id" : pgcm_id,
-        "pversion" : pversion,
+        "KEY": key,
+        "pmethod": pmethod,
+        "pemail": pemail,
+        "pwhere1": pwhere1,
+        "pwhere2": pwhere2,
+        "pwhere3": pwhere3,
+        "pwhere4": pwhere4,
+        "pwhere5": pwhere5,
+        "pwhere6": pwhere6,
+        "pwhere7": pwhere7,
+        "pwhere8": pwhere8,
+        "pdevice": pdevice,
+        "pgcm_id": pgcm_id,
+        "pversion": pversion,
       };
       // make the API request
-      final response = await http.post(url,
-          headers: headerMap,
-          body: bodyMap);
+      final response = await http.post(url, headers: headerMap, body: bodyMap);
       // return the product list
-      if(response.statusCode == 200){
+      if (response.statusCode == 200) {
         var responseBody = SalesApiResponse.fromJson(jsonDecode(response.body));
         var salesList = responseBody.dataSales?.sales ?? [];
         return salesList;
       }
       return [];
-    } catch(e){
+    } catch (e) {
       throw Exception(e);
     }
   }
 
   @override
-  Future<bool> updateSalesData({String? key, String? pmethod, String? pdata1, String? pdata2, String? pdata3, String? pdata4, String? pdata5, String? pdata6, String? pdata7, String? pdata8, String? pdata9, String? pdata10, String? pdataDetail, String? pdevice, String? pgcm_id}) async {
-    try{
+  Future<bool> updateSalesData(
+      {String? key,
+      String? pmethod,
+      String? pdata1,
+      String? pdata2,
+      String? pdata3,
+      String? pdata4,
+      String? pdata5,
+      String? pdata6,
+      String? pdata7,
+      String? pdata8,
+      String? pdata9,
+      String? pdata10,
+      String? pdataDetail,
+      String? pdevice,
+      String? pgcm_id}) async {
+    try {
       // prepare the url
       var url = Uri.https(baseUrl, updateDataUrl);
       // prepare the header
       var headerMap = {
-        "Accept" : "application/json",
+        "Accept": "application/json",
       };
       // prepare the body
       var bodyMap = {
@@ -176,20 +213,16 @@ class ProductRepositoryImpl implements MainRepository {
         "pgcm_id": pgcm_id,
       };
       // make the API request
-      final response = await http.post(url,
-          headers: headerMap,
-          body: bodyMap);
+      final response = await http.post(url, headers: headerMap, body: bodyMap);
       // return the product list
-      if(response.statusCode == 200){
+      if (response.statusCode == 200) {
         var responseBody = SalesApiResponse.fromJson(jsonDecode(response.body));
         var isSuccess = responseBody.success ?? false;
         return isSuccess;
       }
       return false;
-    } catch(e){
+    } catch (e) {
       throw Exception(e);
     }
   }
-
-  
 }
