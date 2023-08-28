@@ -1,5 +1,7 @@
+import 'package:aos_test_aldi_irsan_majid/business_logic/state_management/bloc/blocs/main_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class HomeScreen extends StatefulWidget {
@@ -11,7 +13,47 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
+  void initState() {
+    super.initState();
+
+    context.read<MainBloc>().add(const FetchProductListEvent());
+  }
+  @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(title: const Text("Marketpedia"),),
+      body: Column(
+        children: [
+          const Placeholder(child: Text("Carousel")),
+          const Placeholder(child: Text("Categories")),
+          Column(children: [
+            const Row(
+              children: [
+                Text("New Arrivals"),
+                Text("View More >"),
+              ],
+            ),
+            BlocBuilder<MainBloc,MainState>(
+              builder: (context,state) {
+                var productList = [];
+                if(state is FetchProductSuccess){
+                  productList = state.productList;
+                }
+                return ListView.builder(
+                    shrinkWrap: true,
+                    physics: const ClampingScrollPhysics(),
+                    itemCount: productList.length,
+                    itemBuilder: (c,i){
+                  return ListTile(
+                      title: Text("Item ke ${i+1}",),
+                      subtitle: Text("${productList[i]}",),
+                      );
+                });
+              }
+            )
+          ],)
+        ],
+      ),
+    );
   }
 }

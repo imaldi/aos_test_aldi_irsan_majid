@@ -21,7 +21,7 @@ class ProductModelAdapter extends TypeAdapter<_$_Product> {
       productId: fields[1] as String?,
       productName: fields[2] as String?,
       productDescription: fields[3] as String?,
-      productValue: fields[4] as int?,
+      productValue: fields[4] as String?,
       productType: fields[5] as String?,
       productPhoto: fields[6] as String?,
       quantity: fields[7] as int,
@@ -72,16 +72,19 @@ class ProductDataModelAdapter extends TypeAdapter<_$_Data> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return _$_Data(
-      products: (fields[0] as List).cast<Product>(),
+      table: (fields[0] as List).cast<Product>(),
+      table1: (fields[1] as List).cast<Table1>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, _$_Data obj) {
     writer
-      ..writeByte(1)
+      ..writeByte(2)
       ..writeByte(0)
-      ..write(obj.products);
+      ..write(obj.table)
+      ..writeByte(1)
+      ..write(obj.table1);
   }
 
   @override
@@ -91,6 +94,40 @@ class ProductDataModelAdapter extends TypeAdapter<_$_Data> {
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is ProductDataModelAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class Table1ModelAdapter extends TypeAdapter<_$_Table1> {
+  @override
+  final int typeId = 4;
+
+  @override
+  _$_Table1 read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return _$_Table1(
+      totalPage: fields[0] as int?,
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, _$_Table1 obj) {
+    writer
+      ..writeByte(1)
+      ..writeByte(0)
+      ..write(obj.totalPage);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Table1ModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
@@ -108,7 +145,7 @@ class ProductApiModelAdapter extends TypeAdapter<_$_ProductApiResponse> {
     return _$_ProductApiResponse(
       success: fields[0] as bool?,
       message: fields[1] as String?,
-      data: fields[2] as Data?,
+      data: fields[2] as String?,
     );
   }
 
@@ -140,11 +177,11 @@ class ProductApiModelAdapter extends TypeAdapter<_$_ProductApiResponse> {
 // **************************************************************************
 
 _$_Product _$$_ProductFromJson(Map<String, dynamic> json) => _$_Product(
-      no: json['no'] as int?,
+      no: json['NO'] as int?,
       productId: json['productId'] as String?,
       productName: json['productName'] as String?,
       productDescription: json['productDescription'] as String?,
-      productValue: json['productValue'] as int?,
+      productValue: json['productValue'] as String?,
       productType: json['productType'] as String?,
       productPhoto: json['productPhoto'] as String?,
       quantity: json['quantity'] as int? ?? 0,
@@ -152,7 +189,7 @@ _$_Product _$$_ProductFromJson(Map<String, dynamic> json) => _$_Product(
 
 Map<String, dynamic> _$$_ProductToJson(_$_Product instance) =>
     <String, dynamic>{
-      'no': instance.no,
+      'NO': instance.no,
       'productId': instance.productId,
       'productName': instance.productName,
       'productDescription': instance.productDescription,
@@ -163,13 +200,25 @@ Map<String, dynamic> _$$_ProductToJson(_$_Product instance) =>
     };
 
 _$_Data _$$_DataFromJson(Map<String, dynamic> json) => _$_Data(
-      products: (json['products'] as List<dynamic>)
+      table: (json['Table'] as List<dynamic>)
           .map((e) => Product.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      table1: (json['Table1'] as List<dynamic>)
+          .map((e) => Table1.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
 Map<String, dynamic> _$$_DataToJson(_$_Data instance) => <String, dynamic>{
-      'products': instance.products,
+      'Table': instance.table,
+      'Table1': instance.table1,
+    };
+
+_$_Table1 _$$_Table1FromJson(Map<String, dynamic> json) => _$_Table1(
+      totalPage: json['totalPage'] as int? ?? 0,
+    );
+
+Map<String, dynamic> _$$_Table1ToJson(_$_Table1 instance) => <String, dynamic>{
+      'totalPage': instance.totalPage,
     };
 
 _$_ProductApiResponse _$$_ProductApiResponseFromJson(
@@ -177,9 +226,7 @@ _$_ProductApiResponse _$$_ProductApiResponseFromJson(
     _$_ProductApiResponse(
       success: json['success'] as bool? ?? false,
       message: json['message'] as String?,
-      data: json['data'] == null
-          ? null
-          : Data.fromJson(json['data'] as Map<String, dynamic>),
+      data: json['data'] as String?,
     );
 
 Map<String, dynamic> _$$_ProductApiResponseToJson(

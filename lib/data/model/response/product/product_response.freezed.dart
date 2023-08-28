@@ -20,6 +20,7 @@ Product _$ProductFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Product {
+  @JsonKey(name: "NO")
   @HiveField(0)
   int? get no => throw _privateConstructorUsedError;
   @HiveField(1)
@@ -29,7 +30,7 @@ mixin _$Product {
   @HiveField(3)
   String? get productDescription => throw _privateConstructorUsedError;
   @HiveField(4)
-  int? get productValue => throw _privateConstructorUsedError;
+  String? get productValue => throw _privateConstructorUsedError;
   @HiveField(5)
   String? get productType => throw _privateConstructorUsedError;
   @HiveField(6)
@@ -49,11 +50,11 @@ abstract class $ProductCopyWith<$Res> {
       _$ProductCopyWithImpl<$Res, Product>;
   @useResult
   $Res call(
-      {@HiveField(0) int? no,
+      {@JsonKey(name: "NO") @HiveField(0) int? no,
       @HiveField(1) String? productId,
       @HiveField(2) String? productName,
       @HiveField(3) String? productDescription,
-      @HiveField(4) int? productValue,
+      @HiveField(4) String? productValue,
       @HiveField(5) String? productType,
       @HiveField(6) String? productPhoto,
       @HiveField(7) int quantity});
@@ -101,7 +102,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
       productValue: freezed == productValue
           ? _value.productValue
           : productValue // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       productType: freezed == productType
           ? _value.productType
           : productType // ignore: cast_nullable_to_non_nullable
@@ -126,11 +127,11 @@ abstract class _$$_ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@HiveField(0) int? no,
+      {@JsonKey(name: "NO") @HiveField(0) int? no,
       @HiveField(1) String? productId,
       @HiveField(2) String? productName,
       @HiveField(3) String? productDescription,
-      @HiveField(4) int? productValue,
+      @HiveField(4) String? productValue,
       @HiveField(5) String? productType,
       @HiveField(6) String? productPhoto,
       @HiveField(7) int quantity});
@@ -175,7 +176,7 @@ class __$$_ProductCopyWithImpl<$Res>
       productValue: freezed == productValue
           ? _value.productValue
           : productValue // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       productType: freezed == productType
           ? _value.productType
           : productType // ignore: cast_nullable_to_non_nullable
@@ -197,7 +198,7 @@ class __$$_ProductCopyWithImpl<$Res>
 @HiveType(typeId: productModelTypeId, adapterName: 'ProductModelAdapter')
 class _$_Product implements _Product {
   _$_Product(
-      {@HiveField(0) this.no,
+      {@JsonKey(name: "NO") @HiveField(0) this.no,
       @HiveField(1) this.productId,
       @HiveField(2) this.productName,
       @HiveField(3) this.productDescription,
@@ -210,6 +211,7 @@ class _$_Product implements _Product {
       _$$_ProductFromJson(json);
 
   @override
+  @JsonKey(name: "NO")
   @HiveField(0)
   final int? no;
   @override
@@ -223,7 +225,7 @@ class _$_Product implements _Product {
   final String? productDescription;
   @override
   @HiveField(4)
-  final int? productValue;
+  final String? productValue;
   @override
   @HiveField(5)
   final String? productType;
@@ -284,11 +286,11 @@ class _$_Product implements _Product {
 
 abstract class _Product implements Product {
   factory _Product(
-      {@HiveField(0) final int? no,
+      {@JsonKey(name: "NO") @HiveField(0) final int? no,
       @HiveField(1) final String? productId,
       @HiveField(2) final String? productName,
       @HiveField(3) final String? productDescription,
-      @HiveField(4) final int? productValue,
+      @HiveField(4) final String? productValue,
       @HiveField(5) final String? productType,
       @HiveField(6) final String? productPhoto,
       @HiveField(7) final int quantity}) = _$_Product;
@@ -296,6 +298,7 @@ abstract class _Product implements Product {
   factory _Product.fromJson(Map<String, dynamic> json) = _$_Product.fromJson;
 
   @override
+  @JsonKey(name: "NO")
   @HiveField(0)
   int? get no;
   @override
@@ -309,7 +312,7 @@ abstract class _Product implements Product {
   String? get productDescription;
   @override
   @HiveField(4)
-  int? get productValue;
+  String? get productValue;
   @override
   @HiveField(5)
   String? get productType;
@@ -331,8 +334,12 @@ Data _$DataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Data {
+  @JsonKey(name: "Table")
   @HiveField(0)
-  List<Product> get products => throw _privateConstructorUsedError;
+  List<Product> get table => throw _privateConstructorUsedError;
+  @JsonKey(name: "Table1")
+  @HiveField(1)
+  List<Table1> get table1 => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -344,7 +351,9 @@ abstract class $DataCopyWith<$Res> {
   factory $DataCopyWith(Data value, $Res Function(Data) then) =
       _$DataCopyWithImpl<$Res, Data>;
   @useResult
-  $Res call({@HiveField(0) List<Product> products});
+  $Res call(
+      {@JsonKey(name: "Table") @HiveField(0) List<Product> table,
+      @JsonKey(name: "Table1") @HiveField(1) List<Table1> table1});
 }
 
 /// @nodoc
@@ -360,13 +369,18 @@ class _$DataCopyWithImpl<$Res, $Val extends Data>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? products = null,
+    Object? table = null,
+    Object? table1 = null,
   }) {
     return _then(_value.copyWith(
-      products: null == products
-          ? _value.products
-          : products // ignore: cast_nullable_to_non_nullable
+      table: null == table
+          ? _value.table
+          : table // ignore: cast_nullable_to_non_nullable
               as List<Product>,
+      table1: null == table1
+          ? _value.table1
+          : table1 // ignore: cast_nullable_to_non_nullable
+              as List<Table1>,
     ) as $Val);
   }
 }
@@ -377,7 +391,9 @@ abstract class _$$_DataCopyWith<$Res> implements $DataCopyWith<$Res> {
       __$$_DataCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@HiveField(0) List<Product> products});
+  $Res call(
+      {@JsonKey(name: "Table") @HiveField(0) List<Product> table,
+      @JsonKey(name: "Table1") @HiveField(1) List<Table1> table1});
 }
 
 /// @nodoc
@@ -389,13 +405,18 @@ class __$$_DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res, _$_Data>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? products = null,
+    Object? table = null,
+    Object? table1 = null,
   }) {
     return _then(_$_Data(
-      products: null == products
-          ? _value._products
-          : products // ignore: cast_nullable_to_non_nullable
+      table: null == table
+          ? _value._table
+          : table // ignore: cast_nullable_to_non_nullable
               as List<Product>,
+      table1: null == table1
+          ? _value._table1
+          : table1 // ignore: cast_nullable_to_non_nullable
+              as List<Table1>,
     ));
   }
 }
@@ -405,23 +426,39 @@ class __$$_DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res, _$_Data>
 @HiveType(
     typeId: productDataModelTypeId, adapterName: 'ProductDataModelAdapter')
 class _$_Data implements _Data {
-  _$_Data({@HiveField(0) required final List<Product> products})
-      : _products = products;
+  _$_Data(
+      {@JsonKey(name: "Table") @HiveField(0) required final List<Product> table,
+      @JsonKey(name: "Table1")
+      @HiveField(1)
+      required final List<Table1> table1})
+      : _table = table,
+        _table1 = table1;
 
   factory _$_Data.fromJson(Map<String, dynamic> json) => _$$_DataFromJson(json);
 
-  final List<Product> _products;
+  final List<Product> _table;
   @override
+  @JsonKey(name: "Table")
   @HiveField(0)
-  List<Product> get products {
-    if (_products is EqualUnmodifiableListView) return _products;
+  List<Product> get table {
+    if (_table is EqualUnmodifiableListView) return _table;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_products);
+    return EqualUnmodifiableListView(_table);
+  }
+
+  final List<Table1> _table1;
+  @override
+  @JsonKey(name: "Table1")
+  @HiveField(1)
+  List<Table1> get table1 {
+    if (_table1 is EqualUnmodifiableListView) return _table1;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_table1);
   }
 
   @override
   String toString() {
-    return 'Data(products: $products)';
+    return 'Data(table: $table, table1: $table1)';
   }
 
   @override
@@ -429,13 +466,16 @@ class _$_Data implements _Data {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Data &&
-            const DeepCollectionEquality().equals(other._products, _products));
+            const DeepCollectionEquality().equals(other._table, _table) &&
+            const DeepCollectionEquality().equals(other._table1, _table1));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_products));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_table),
+      const DeepCollectionEquality().hash(_table1));
 
   @JsonKey(ignore: true)
   @override
@@ -452,17 +492,161 @@ class _$_Data implements _Data {
 }
 
 abstract class _Data implements Data {
-  factory _Data({@HiveField(0) required final List<Product> products}) =
-      _$_Data;
+  factory _Data(
+      {@JsonKey(name: "Table") @HiveField(0) required final List<Product> table,
+      @JsonKey(name: "Table1")
+      @HiveField(1)
+      required final List<Table1> table1}) = _$_Data;
 
   factory _Data.fromJson(Map<String, dynamic> json) = _$_Data.fromJson;
 
   @override
+  @JsonKey(name: "Table")
   @HiveField(0)
-  List<Product> get products;
+  List<Product> get table;
+  @override
+  @JsonKey(name: "Table1")
+  @HiveField(1)
+  List<Table1> get table1;
   @override
   @JsonKey(ignore: true)
   _$$_DataCopyWith<_$_Data> get copyWith => throw _privateConstructorUsedError;
+}
+
+Table1 _$Table1FromJson(Map<String, dynamic> json) {
+  return _Table1.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Table1 {
+  @HiveField(0)
+  int? get totalPage => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $Table1CopyWith<Table1> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $Table1CopyWith<$Res> {
+  factory $Table1CopyWith(Table1 value, $Res Function(Table1) then) =
+      _$Table1CopyWithImpl<$Res, Table1>;
+  @useResult
+  $Res call({@HiveField(0) int? totalPage});
+}
+
+/// @nodoc
+class _$Table1CopyWithImpl<$Res, $Val extends Table1>
+    implements $Table1CopyWith<$Res> {
+  _$Table1CopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? totalPage = freezed,
+  }) {
+    return _then(_value.copyWith(
+      totalPage: freezed == totalPage
+          ? _value.totalPage
+          : totalPage // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_Table1CopyWith<$Res> implements $Table1CopyWith<$Res> {
+  factory _$$_Table1CopyWith(_$_Table1 value, $Res Function(_$_Table1) then) =
+      __$$_Table1CopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@HiveField(0) int? totalPage});
+}
+
+/// @nodoc
+class __$$_Table1CopyWithImpl<$Res>
+    extends _$Table1CopyWithImpl<$Res, _$_Table1>
+    implements _$$_Table1CopyWith<$Res> {
+  __$$_Table1CopyWithImpl(_$_Table1 _value, $Res Function(_$_Table1) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? totalPage = freezed,
+  }) {
+    return _then(_$_Table1(
+      totalPage: freezed == totalPage
+          ? _value.totalPage
+          : totalPage // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+@HiveType(typeId: table1ModelTypeId, adapterName: 'Table1ModelAdapter')
+class _$_Table1 implements _Table1 {
+  _$_Table1({@HiveField(0) this.totalPage = 0});
+
+  factory _$_Table1.fromJson(Map<String, dynamic> json) =>
+      _$$_Table1FromJson(json);
+
+  @override
+  @JsonKey()
+  @HiveField(0)
+  final int? totalPage;
+
+  @override
+  String toString() {
+    return 'Table1(totalPage: $totalPage)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Table1 &&
+            (identical(other.totalPage, totalPage) ||
+                other.totalPage == totalPage));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, totalPage);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_Table1CopyWith<_$_Table1> get copyWith =>
+      __$$_Table1CopyWithImpl<_$_Table1>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_Table1ToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Table1 implements Table1 {
+  factory _Table1({@HiveField(0) final int? totalPage}) = _$_Table1;
+
+  factory _Table1.fromJson(Map<String, dynamic> json) = _$_Table1.fromJson;
+
+  @override
+  @HiveField(0)
+  int? get totalPage;
+  @override
+  @JsonKey(ignore: true)
+  _$$_Table1CopyWith<_$_Table1> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 ProductApiResponse _$ProductApiResponseFromJson(Map<String, dynamic> json) {
@@ -476,7 +660,7 @@ mixin _$ProductApiResponse {
   @HiveField(1)
   String? get message => throw _privateConstructorUsedError;
   @HiveField(2)
-  Data? get data => throw _privateConstructorUsedError;
+  String? get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -493,9 +677,7 @@ abstract class $ProductApiResponseCopyWith<$Res> {
   $Res call(
       {@HiveField(0) bool? success,
       @HiveField(1) String? message,
-      @HiveField(2) Data? data});
-
-  $DataCopyWith<$Res>? get data;
+      @HiveField(2) String? data});
 }
 
 /// @nodoc
@@ -527,20 +709,8 @@ class _$ProductApiResponseCopyWithImpl<$Res, $Val extends ProductApiResponse>
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as Data?,
+              as String?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $DataCopyWith<$Res>? get data {
-    if (_value.data == null) {
-      return null;
-    }
-
-    return $DataCopyWith<$Res>(_value.data!, (value) {
-      return _then(_value.copyWith(data: value) as $Val);
-    });
   }
 }
 
@@ -555,10 +725,7 @@ abstract class _$$_ProductApiResponseCopyWith<$Res>
   $Res call(
       {@HiveField(0) bool? success,
       @HiveField(1) String? message,
-      @HiveField(2) Data? data});
-
-  @override
-  $DataCopyWith<$Res>? get data;
+      @HiveField(2) String? data});
 }
 
 /// @nodoc
@@ -588,7 +755,7 @@ class __$$_ProductApiResponseCopyWithImpl<$Res>
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as Data?,
+              as String?,
     ));
   }
 }
@@ -614,7 +781,7 @@ class _$_ProductApiResponse implements _ProductApiResponse {
   final String? message;
   @override
   @HiveField(2)
-  final Data? data;
+  final String? data;
 
   @override
   String toString() {
@@ -654,7 +821,7 @@ abstract class _ProductApiResponse implements ProductApiResponse {
   factory _ProductApiResponse(
       {@HiveField(0) final bool? success,
       @HiveField(1) final String? message,
-      @HiveField(2) final Data? data}) = _$_ProductApiResponse;
+      @HiveField(2) final String? data}) = _$_ProductApiResponse;
 
   factory _ProductApiResponse.fromJson(Map<String, dynamic> json) =
       _$_ProductApiResponse.fromJson;
@@ -667,7 +834,7 @@ abstract class _ProductApiResponse implements ProductApiResponse {
   String? get message;
   @override
   @HiveField(2)
-  Data? get data;
+  String? get data;
   @override
   @JsonKey(ignore: true)
   _$$_ProductApiResponseCopyWith<_$_ProductApiResponse> get copyWith =>

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:aos_test_aldi_irsan_majid/core/resource/const/urls.dart';
 import 'package:aos_test_aldi_irsan_majid/data/model/response/sales/sales_response.dart';
@@ -83,6 +84,7 @@ class MainRepositoryImpl implements MainRepository {
       // prepare the header
       var headerMap = {
         "Accept": "application/json",
+        "Content-Type": "application/json",
       };
       // prepare the body
       var bodyMap = {
@@ -102,16 +104,21 @@ class MainRepositoryImpl implements MainRepository {
         "pversion": pversion,
       };
       // make the API request
-      final response = await http.post(url, headers: headerMap, body: bodyMap);
+      final response = await http.post(url, headers: headerMap, body: jsonEncode(bodyMap));
+      print("Response Product: ${response.body}");
       // return the product list
       if (response.statusCode == 200) {
         var responseBody =
             ProductApiResponse.fromJson(jsonDecode(response.body));
-        var productList = responseBody.data?.products ?? [];
-        return productList;
+        var dataJson = Data.fromJson(jsonDecode(responseBody.data ?? "{}"));
+        log("responseBody: ${dataJson.toJson().toString()}");
+
+        // var productList = responseBody.data?.products ?? [];
+        return dataJson.table;
       }
       return [];
     } catch (e) {
+      print("ERROR: ${e.runtimeType}");
       throw Exception(e);
     }
   }
@@ -138,6 +145,7 @@ class MainRepositoryImpl implements MainRepository {
       // prepare the header
       var headerMap = {
         "Accept": "application/json",
+        "Content-Type": "application/json",
       };
       // prepare the body
       var bodyMap = {
@@ -192,7 +200,7 @@ class MainRepositoryImpl implements MainRepository {
       var url = Uri.https(baseUrl, updateDataUrl);
       // prepare the header
       var headerMap = {
-        "Accept": "application/json",
+        "Content-Type": "application/json",
       };
       // prepare the body
       var bodyMap = {
