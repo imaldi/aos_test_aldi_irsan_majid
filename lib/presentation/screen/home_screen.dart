@@ -125,56 +125,98 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               }).toList(),
             ),
-            const Placeholder(child: Text("Categories")),
-            Column(
-              children: [
-                const Row(
-                  children: [
-                    Text("New Arrivals"),
-                    Text("View More >"),
-                  ],
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: Column(children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Top Categories",style: TextStyle(fontSize:16, fontWeight: FontWeight.bold),),
+                      Text("View More >",style: TextStyle(color: Colors.orange),),
+                    ],
+                  ),
                 ),
-                BlocBuilder<MainBloc, MainState>(builder: (context, state) {
-                  var productList = <Product>[];
-                  var salesList = [];
-                  if(state is LoadingState){
-                    return Container(
-                        padding: const EdgeInsets.only(top: 64),
-                        child: const CircularProgressIndicator(color: Colors.black,));
-                  }
-                  if (state is FetchProductSuccess) {
-                    productList = state.productList;
-                    return ListView.builder(
-                        shrinkWrap: true,
-                        physics: const ClampingScrollPhysics(),
-                        itemCount: productList.length,
-                        itemBuilder: (c, i) {
-                          return ProductTile(
-                            product: productList[i]
-                          );
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Row(
 
-                        });
-                  }
-                  if (state is FetchSalesSuccess) {
-                    salesList = state.salesItem;
-                    return ListView.builder(
-                        shrinkWrap: true,
-                        physics: const ClampingScrollPhysics(),
-                        itemCount: salesList.length,
-                        itemBuilder: (c, i) {
-                          return ListTile(
-                            title: Text(
-                              "Item ke ${i + 1}",
-                            ),
-                            subtitle: Text(
-                              "${salesList[i]}",
-                            ),
-                          );
-                        });
-                  }
-                  return Container();
-                }),
-              ],
+                    children: [
+                      Icons.accessibility_sharp,
+                      Icons.woman,
+                      Icons.headset,
+                      Icons.watch,
+                      Icons.smartphone,
+                      Icons.laptop,
+                    ].map((e) => Flexible(
+                      child: Card(
+                        color:Colors.grey[200],
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                        child: Container(
+                            padding: const EdgeInsets.all(16),
+                            child: Icon(e)),),
+                    )).toList(),
+                  ),
+                )
+              ],),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: Column(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("New Arrivals",style: TextStyle(fontSize:16, fontWeight: FontWeight.bold),),
+                        Text("View More >",style: TextStyle(color: Colors.orange),),
+                      ],
+                    ),
+                  ),
+                  BlocBuilder<MainBloc, MainState>(builder: (context, state) {
+                    var productList = <Product>[];
+                    var salesList = [];
+                    if(state is LoadingState){
+                      return Container(
+                          padding: const EdgeInsets.only(top: 64),
+                          child: const CircularProgressIndicator(color: Colors.black,));
+                    }
+                    if (state is FetchProductSuccess) {
+                      productList = state.productList;
+                      return ListView.builder(
+                          shrinkWrap: true,
+                          physics: const ClampingScrollPhysics(),
+                          itemCount: productList.length,
+                          itemBuilder: (c, i) {
+                            return ProductTile(
+                              product: productList[i]
+                            );
+
+                          });
+                    }
+                    if (state is FetchSalesSuccess) {
+                      salesList = state.salesItem;
+                      return ListView.builder(
+                          shrinkWrap: true,
+                          physics: const ClampingScrollPhysics(),
+                          itemCount: salesList.length,
+                          itemBuilder: (c, i) {
+                            return ListTile(
+                              title: Text(
+                                "Item ke ${i + 1}",
+                              ),
+                              subtitle: Text(
+                                "${salesList[i]}",
+                              ),
+                            );
+                          });
+                    }
+                    return Container();
+                  }),
+                ],
+              ),
             )
           ],
         ),
@@ -201,13 +243,13 @@ class _HomeScreenState extends State<HomeScreen> {
           elevation: 2,
           activeColor: Colors.green,
           // initialActiveIndex: widget.activeIndex,
-          items: [
+          items: const [
             TabItem(
               title: "Home",
               icon: Icon(Icons.home),
               isIconBlend: true,
             ),
-            const TabItem(
+            TabItem(
               title: "Search",
               icon: Icon(Icons.search),
               isIconBlend: true,
@@ -217,12 +259,12 @@ class _HomeScreenState extends State<HomeScreen> {
               Icon(Icons.shopping_cart),
               isIconBlend: true,
             ),
-            const TabItem(
+            TabItem(
               title: "Riwayat",
               icon: Icon(Icons.notes),
               isIconBlend: true,
             ),
-            const TabItem(
+            TabItem(
               title: "Profile",
               icon: Icon(Icons.person_outline),
               isIconBlend: true,
