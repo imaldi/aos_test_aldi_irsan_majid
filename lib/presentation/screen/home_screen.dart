@@ -1,5 +1,6 @@
 import 'package:aos_test_aldi_irsan_majid/business_logic/state_management/bloc/blocs/main_bloc.dart';
 import 'package:aos_test_aldi_irsan_majid/core/router/app_router.dart';
+import 'package:aos_test_aldi_irsan_majid/core/utils/my_toast.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,14 @@ class _HomeScreenState extends State<HomeScreen> {
             borderRadius: const BorderRadius.all(Radius.circular(5.0)),
             child: Stack(
               children: <Widget>[
-                Image.network(item, fit: BoxFit.cover, width: 1000.0),
+                Image.network(item, fit: BoxFit.cover, width: 1000.0,errorBuilder: (bc, o, st) {
+                  return Center(
+                    child: Container(
+                      margin: const EdgeInsets.all(32),
+                        color: Colors.grey[300],
+                        child: Text("Image not found")),
+                  );
+                },),
                 Positioned(
                   bottom: 0.0,
                   left: 0.0,
@@ -175,7 +183,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
-                  BlocBuilder<MainBloc, MainState>(builder: (context, state) {
+                  BlocConsumer<MainBloc, MainState>(
+                      listener: (bc,state){
+                        if(state is FetchProductFailed){
+                          myToast("Ada error: ${state.message}");
+                        }
+                      },
+                      builder: (context, state) {
                     var productList = <Product>[];
                     if(state is LoadingState){
                       return Container(
@@ -189,8 +203,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           physics: const ClampingScrollPhysics(),
                           itemCount: productList.length,
                           itemBuilder: (c, i) {
-                            return ProductTile(
-                              product: productList[i]
+                            return InkWell(
+                              onTap: (){
+                                context.router.push(ProductDetailRoute(product: productList[i]));
+                              },
+                              child: ProductTile(
+                                product: productList[i]
+                              ),
                             );
 
                           });

@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 
+import '../../data/model/response/product/product_response.dart';
 import '../../presentation/screen/cart_screen.dart';
 import '../../presentation/screen/history_screen.dart';
 import '../../presentation/screen/home_screen.dart';

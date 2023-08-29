@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
+import '../../core/utils/my_toast.dart';
 import '../../data/model/response/product/product_response.dart';
 
 class ProductTile extends StatelessWidget {
@@ -57,6 +58,7 @@ class ProductTile extends StatelessWidget {
               InkWell(
                   onTap: (){
                     addToCart(product);
+                    myToast("Success Added to Cart");
                   },
                   child: Icon(Icons.add)),
             ],

@@ -13,27 +13,36 @@ class MainBloc extends Bloc<MainEvent, MainState> {
   MainBloc({required MainRepository repository}) : super(const InitialState()) {
     on<FetchProductListEvent>((event, emit) async {
       emit(const LoadingState());
-      var productList = await repository.fetchProductList(
-          key: requestKey,
-          pmethod: fetchProductKey,
-          pemail: defaultEmailKey,
-          pwhere6: (event.pageNumber ?? 1).toString(),
-          pwhere7: (event.totalPerPage ?? 6).toString());
+      try{
+        var productList = await repository.fetchProductList(
+            key: requestKey,
+            pmethod: fetchProductKey,
+            pemail: defaultEmailKey,
+            pwhere6: (event.pageNumber ?? 1).toString(),
+            pwhere7: (event.totalPerPage ?? 6).toString());
 
-      emit(FetchProductSuccess(productList));
+        emit(FetchProductSuccess(productList));
+
+      } catch(e){
+        emit(FetchProductFailed(e.runtimeType.toString()));
+      }
     });
     on<FetchSalesListEvent>((event, emit) async {
       emit(const LoadingState());
-      var salesList = await repository.fetchSalesList(
-          key: requestKey,
-          pmethod: fetchSalesKey,
-          pemail: defaultEmailKey,
-          pwhere2: defaultStartDateKey,
-          pwhere3: defaultEndDateKey,
-          pwhere6: (event.pageNumber ?? 1).toString(),
-          pwhere7: (event.totalPerPage ?? 10).toString());
+      try{
+        var salesList = await repository.fetchSalesList(
+            key: requestKey,
+            pmethod: fetchSalesKey,
+            pemail: defaultEmailKey,
+            pwhere2: defaultStartDateKey,
+            pwhere3: defaultEndDateKey,
+            pwhere6: (event.pageNumber ?? 1).toString(),
+            pwhere7: (event.totalPerPage ?? 10).toString());
 
-      emit(FetchSalesSuccess(salesList));
+        emit(FetchSalesSuccess(salesList));
+      } catch(e) {
+        emit(FetchSalesFailed(e.runtimeType.toString()));
+      }
     });
     on<UpdateSalesDataEvent>((event, emit) {});
   }

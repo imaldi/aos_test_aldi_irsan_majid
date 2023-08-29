@@ -29,6 +29,20 @@ final class FetchSalesSuccess extends MainState {
   @override
   List<Object?> get props => [salesItem];
 }
+final class FetchProductFailed extends MainState {
+  const FetchProductFailed(this.message);
+  final String? message;
+  @override
+  List<Object?> get props => [message];
+
+}
+final class FetchSalesFailed extends MainState {
+  const FetchSalesFailed(this.message);
+  final String? message;
+  @override
+  List<Object?> get props => [message];
+
+}
 
 final class UpdateSalesSuccess extends MainState {
   @override

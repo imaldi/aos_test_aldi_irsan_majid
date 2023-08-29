@@ -5,6 +5,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../core/utils/my_toast.dart';
+
 @RoutePage()
 class HistoryScreen extends StatefulWidget implements AutoRouteWrapper {
   const HistoryScreen({Key? key}) : super(key: key);
@@ -32,13 +34,20 @@ class _HistoryScreenState extends State<HistoryScreen> {
       appBar: AppBar(
         title: const Text("Marketpedia"),
       ),
-      body: BlocBuilder<MainBloc,MainState>(
+      body: BlocConsumer<MainBloc,MainState>(
+        listener: (bc, state){
+          if(state is FetchProductFailed){
+            myToast("Ada error: ${state.message}");
+          }
+        },
         builder: (c,state){
           var salesList = <SalesItem>[];
           if(state is LoadingState){
-            return Container(
-                padding: const EdgeInsets.only(top: 64),
-                child: const CircularProgressIndicator(color: Colors.black,));
+            return Center(
+              child: Container(
+                  padding: const EdgeInsets.only(top: 64),
+                  child: const CircularProgressIndicator(color: Colors.black,)),
+            );
           }
           if (state is FetchSalesSuccess) {
             salesList = state.salesItem;
