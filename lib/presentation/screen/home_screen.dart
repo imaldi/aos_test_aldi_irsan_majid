@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.symmetric(
                         vertical: 10.0, horizontal: 20.0),
                     child: Text(
-                      'No. ${imgList.indexOf(item)} image',
+                      'No. ${imgList.indexOf(item)+1} image',
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 20.0,
@@ -177,7 +177,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   BlocBuilder<MainBloc, MainState>(builder: (context, state) {
                     var productList = <Product>[];
-                    var salesList = [];
                     if(state is LoadingState){
                       return Container(
                           padding: const EdgeInsets.only(top: 64),
@@ -212,7 +211,7 @@ class _HomeScreenState extends State<HomeScreen> {
               // context.read<AuthBloc>().add(const UserLogoutAuthEvent());
             }
             if (index == 2) {
-              // context.router.replace(HomeRoute());
+              context.router.push(const CartRoute());
             }
             if (index == 3) {
               context.router.push(const HistoryRoute());

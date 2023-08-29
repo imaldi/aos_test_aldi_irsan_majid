@@ -9,6 +9,7 @@ import 'data/repository/main_repository.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
+  Hive.registerAdapter<Product>(ProductModelAdapter());
   await Hive.openBox<Product>('cart');
   runApp(const MyApp());
 }
