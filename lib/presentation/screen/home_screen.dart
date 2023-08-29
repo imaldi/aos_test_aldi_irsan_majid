@@ -1,4 +1,5 @@
 import 'package:aos_test_aldi_irsan_majid/business_logic/state_management/bloc/blocs/main_bloc.dart';
+import 'package:aos_test_aldi_irsan_majid/core/router/app_router.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
@@ -66,7 +67,6 @@ class _HomeScreenState extends State<HomeScreen> {
     ))
         .toList();
     context.read<MainBloc>().add(const FetchProductListEvent());
-    // context.read<MainBloc>().add(const FetchSalesListEvent());
   }
 
 
@@ -196,23 +196,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                           });
                     }
-                    if (state is FetchSalesSuccess) {
-                      salesList = state.salesItem;
-                      return ListView.builder(
-                          shrinkWrap: true,
-                          physics: const ClampingScrollPhysics(),
-                          itemCount: salesList.length,
-                          itemBuilder: (c, i) {
-                            return ListTile(
-                              title: Text(
-                                "Item ke ${i + 1}",
-                              ),
-                              subtitle: Text(
-                                "${salesList[i]}",
-                              ),
-                            );
-                          });
-                    }
+
                     return Container();
                   }),
                 ],
@@ -231,8 +215,7 @@ class _HomeScreenState extends State<HomeScreen> {
               // context.router.replace(HomeRoute());
             }
             if (index == 3) {
-              // context.router
-                  // .replace(RiwayatSuratJalanRoute(isRedirectDetailRiwayat: true));
+              context.router.push(const HistoryRoute());
             }
           },
           // height: heightScreen(context) / 12,
@@ -243,28 +226,28 @@ class _HomeScreenState extends State<HomeScreen> {
           elevation: 2,
           activeColor: Colors.green,
           // initialActiveIndex: widget.activeIndex,
-          items: const [
-            TabItem(
+          items: [
+            const TabItem(
               title: "Home",
               icon: Icon(Icons.home),
               isIconBlend: true,
             ),
-            TabItem(
+            const TabItem(
               title: "Search",
               icon: Icon(Icons.search),
               isIconBlend: true,
             ),
-            TabItem(
+            const TabItem(
               icon:
               Icon(Icons.shopping_cart),
               isIconBlend: true,
             ),
             TabItem(
               title: "Riwayat",
-              icon: Icon(Icons.notes),
+              icon: const Icon(Icons.notes),
               isIconBlend: true,
             ),
-            TabItem(
+            const TabItem(
               title: "Profile",
               icon: Icon(Icons.person_outline),
               isIconBlend: true,

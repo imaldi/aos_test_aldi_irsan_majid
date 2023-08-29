@@ -31,7 +31,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
           pwhere2: defaultStartDateKey,
           pwhere3: defaultEndDateKey,
           pwhere6: (event.pageNumber ?? 1).toString(),
-          pwhere7: (event.totalPerPage ?? 5).toString());
+          pwhere7: (event.totalPerPage ?? 10).toString());
 
       emit(FetchSalesSuccess(salesList));
     });
